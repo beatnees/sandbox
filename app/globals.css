@@ -1,9 +1,15 @@
 @import "tailwindcss";
 
 :root {
+  /* Fundos */
   --background: #fcfaff;
-  --foreground: #252238;
+  --surface: #ffffff;
 
+  /* Texto */
+  --foreground: #252238;
+  --muted: #756f86;
+
+  /* Identidades */
   --primary: #7c3aed;
   --primary-light: #ede9fe;
   --primary-dark: #5b21b6;
@@ -12,14 +18,13 @@
   --secondary-light: #fce7f3;
   --secondary-dark: #be185d;
 
-  --sucess: #22a06b;
+  /* Status */
+  --success: #22a06b;
   --warning: #d99a24;
   --danger: #dc4a4a;
 
-  --surface: #ffffff;
+  /* Interfaces */
   --border: #e9e4f2;
-
-  --muted: #756f86;
 }
 
 * {
@@ -44,7 +49,6 @@ h4,
 h5,
 h6 {
   font-family: var(--font-sora), sans-serif;
-  color: var(--primary);
 }
 
 button,
