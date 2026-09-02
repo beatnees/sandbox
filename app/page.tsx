@@ -106,6 +106,28 @@ export default function Home() {
             </div>
           </div>
         </section>
+
+        {/* SOBRE */}
+        <section id="sobre" className="px-6 py-24 md:py-32">
+          <div className="mx-auto max-w-7xl">
+            {/* cabeçalho */}
+            <div className="mx-auto max-w-3xl text-center">
+              <span className="inline-flex items-center rounded-full bg-(--secondary-light) px-4 py-2 text-sm font-semibold text-(--secondary)">
+                Sobre o Sandbox
+              </span>
+              <h2 className="mt-6 text-3xl font-bold tracking-tight text-(--foreground) md:text-5xl">
+                Experimentar também é uma forma de
+                <span className="text-(--primary)"> construir o futuro.</span>
+              </h2>
+
+              <p className="mt-6 text-lg leading-relaxed text-(--muted)">
+                O Sandbox é um espaço colaborativo para desenvolver, testar e
+                acompanhar soluções de Inteligência Artificial que podem
+                transformar a educação.
+              </p>
+            </div>
+          </div>
+        </section>
       </main>
     </>
   );
