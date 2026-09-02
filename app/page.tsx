@@ -5,7 +5,7 @@ export default function Home() {
     <>
       <Header />
 
-      <main className="overflow-hidden bg-(--background)">
+      <main className="bg-(--background)">
         {/* HERO */}
         <section className="relative min-h-[calc(100vh-80px)] px-6 py-20">
           {/* Fundo decorativo */}
@@ -46,15 +46,15 @@ export default function Home() {
             </div>
 
             {/* ELEMENTO VISUAL */}
-            <div className="relative flex min-h-112.5 items-center justify-center">
+            <div className="relative flex min-h-125 items-center justify-center py-12 md:min-h-125 md:py-0">
               {/* círculo externo */}
-              <div className="absolute h-95 w-95 rounded-full border border-(--border)" />
+              <div className="absolute left-1/2 top-1/2 h-105 w-105 -translate-x-1/2 -translate-y-1/2 rounded-full border border-(--border)" />
 
               {/* círculo interno */}
-              <div className="absolute h-70 w-70 rounded-full bg-(--primary-light)" />
+              <div className="absolute left-1/2 top-1/2 h-85 w-85 -translate-x-1/2 -translate-y-1/2 rounded-full bg-(--primary-light)" />
 
-              {/* Card principal */}
-              <div className="relative z-10 w-full max-w-sm rounded-3xl border border-(--border) bg-(--surface) p-8 shadow-xl">
+              {/* card principal */}
+              <div className="relative z-10 w-full max-w-sm rounded-3xl border border-(--border) bg-(--surface) p-6 shadow-xl md:p-8">
                 <div className="flex items-center justify-between">
                   <span className="rounded-xl bg-(--primary-light) px-3 py-2 text-sm font-semibold text-(--primary)">
                     EM DESENVOLVIMENTO
@@ -72,7 +72,7 @@ export default function Home() {
                   a educação.
                 </p>
 
-                {/* Barra */}
+                {/* barra */}
                 <div className="mt-8">
                   <div className="mb-3 flex justify-between text-sm">
                     <span className="text-(--muted)">Jornada</span>
@@ -86,8 +86,8 @@ export default function Home() {
                 </div>
               </div>
 
-              {/* Elementos flutuantes */}
-              <div className="absolute left-0 top-12 rounded-2xl bg-(--surface) px-5 py-4 shadow-lg">
+              {/* projetos */}
+              <div className="absolute left-0 top-16 z-20 rounded-2xl bg-(--surface) px-5 py-4 shadow-lg">
                 <div className="text-sm text-(--muted)">Projetos</div>
 
                 <div className="mt-1 text-2xl font-bold text-(--primary)">
@@ -95,7 +95,8 @@ export default function Home() {
                 </div>
               </div>
 
-              <div className="absolute bottom-12 z-20 right-0 rounded-2xl bg-(--surface) px-5 py-4 shadow-lg">
+              {/* progresso */}
+              <div className="absolute bottom-8 right-0 z-20 rounded-2xl bg-(--surface) px-5 py-4 shadow-lg">
                 <div className="text-sm text-(--muted)">Progresso</div>
 
                 <div className="mt-1 text-2xl font-bold text-(--secondary)">

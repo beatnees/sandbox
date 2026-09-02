@@ -1,6 +1,6 @@
 export default function Header() {
   return (
-    <header className="w-full border-b border-(--border) bg-(--surface)">
+    <header className="sticky top-0 z-50 w-full border-b border-(--border) bg-(--surface)">
       <div className="mx-auto flex h-20 max-w-7xl items-center justify-between px-6">
         {/* Logo */}
         <a href="/sandbox" className="flex items-center gap-3">
