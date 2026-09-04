@@ -7,7 +7,7 @@ export default function Home() {
 
       <main className="bg-(--background)">
         {/* HERO */}
-        <section className="relative min-h-[calc(100vh-80px)] px-6 py-20">
+        <section className="relative min-h-[calc(100vh-80px)] px-6 py-12 md:py-24">
           {/* Fundo decorativo */}
 
           <div className="relative mx-auto grid max-w-7xl items-center gap-16 lg:grid-cols-2">
@@ -108,7 +108,7 @@ export default function Home() {
         </section>
 
         {/* SOBRE */}
-        <section id="sobre" className="px-6 py-24 md:py-32">
+        <section id="sobre" className="px-6 py-12 md:py-24">
           <div className="mx-auto max-w-7xl">
             {/* cabeçalho */}
             <div className="mx-auto max-w-3xl text-center">
@@ -125,6 +125,51 @@ export default function Home() {
                 acompanhar soluções de Inteligência Artificial que podem
                 transformar a educação.
               </p>
+            </div>
+
+            {/* cards */}
+            <div className="mt-16 grid gap-6 md:grid-cols-3">
+              {/* card 1 */}
+              <div className="rounded-3xl border border-(--border) bg-(--surface) p-8 shadow-sm transition hover:-translate-y-1 hover:shadow-lg">
+                <div className="flex h-12 w-12 items-center justify-center rounded-2xl bg-(--primary-light) text-2xl">
+                  ✦
+                </div>
+                <h3 className="mt-6 text-xl font-bold text-(--foreground)">
+                  Explorar
+                </h3>
+                <p className="mt-3 leading-relaxed text-(--muted)">
+                  Descubra possibilidades e identifique oportunidades para o uso
+                  responsável da Inteligência Artificial na educação.
+                </p>
+              </div>
+
+              {/* card 2 */}
+              <div className="rounded-3xl border border-(--border) bg-(--surface) p-8 shadow-sm transition hover:-translate-y-1 hover:shadow-lg">
+                <div className="flex h-12 w-12 items-center justify-center rounded-2xl bg-(--primary-light) text-2xl">
+                  ✦
+                </div>
+                <h3 className="mt-6 text-xl font-bold text-(--foreground)">
+                  Experimentar
+                </h3>
+                <p className="mt-3 leading-relaxed text-(--muted)">
+                  Teste ideias em um ambiente seguro, acompanhe resultados e
+                  aprenda com cada experiência.
+                </p>
+              </div>
+
+              {/* card 3 */}
+              <div className="rounded-3xl border border-(--border) bg-(--surface) p-8 shadow-sm transition hover:-translate-y-1 hover:shadow-lg">
+                <div className="flex h-12 w-12 items-center justify-center rounded-2xl bg-(--primary-light) text-2xl">
+                  ↗
+                </div>
+                <h3 className="mt-6 text-xl font-bold text-(--foreground)">
+                  Evoluir
+                </h3>
+                <p className="mt-3 leading-relaxed text-(--muted)">
+                  Transforme aprendizados em soluções que possam gerar impacto
+                  real para estudantes, educadores e instituições.
+                </p>
+              </div>
             </div>
           </div>
         </section>
