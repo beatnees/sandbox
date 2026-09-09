@@ -7,101 +7,162 @@ export default function Home() {
 
       <main className="bg-(--background)">
         {/* HERO */}
-        <section className="relative min-h-[calc(100vh-80px)] px-6 py-12 md:py-24">
-          {/* Fundo decorativo */}
+        <section className="relative overflow-hidden bg-linear-to-br from-(--blue-dark) via-(--blue) to-(--primary) px-6 py-16 text-(--surface) md:py-24">
+          {/* textura decorativa */}
+          <div
+            className="
+      pointer-events-none
+      absolute inset-0
+      opacity-[0.08]
+      [bg-image:radial-gradient(circle_at_center,var(--background)_1px,transparent_1px)]
+      [bg-size:32px_32px]
+    "
+          />
 
-          <div className="relative mx-auto grid max-w-7xl items-center gap-16 lg:grid-cols-2">
-            {/* texto */}
-            <div>
-              <div className="mb-6 inline-flex items-center gap-2 rounded-full border border-(--border) bg-(--surface) px-4 py-2">
-                <span className="h-2 w-2 rounded-full bg-(--secondary)" />
+          <div className="relative mx-auto max-w-7xl">
+            {/* CONTEÚDO PRINCIPAL */}
+            <div className="grid items-center gap-14 lg:grid-cols-[1.05fr_0.95fr] lg:gap-20">
+              {/* TEXTO */}
+              <div>
+                {/* Badge */}
+                <div className="inline-flex items-center gap-2 rounded-full border border-white/30 bg-white/10 px-4 py-2 backdrop-blur-sm">
+                  <span className="h-2 w-2 rounded-full bg-(--secondary)" />
 
-                <span className="text-sm font-medium text-(--muted)">
-                  Sandbox de IA na Educação
-                </span>
+                  <span className="text-sm font-semibold text-white">
+                    Ciclo 2026 — em andamento
+                  </span>
+                </div>
+
+                {/* Título */}
+                <h1 className="mt-8 max-w-3xl text-4xl font-bold leading-[1.05] tracking-tight text-white sm:text-5xl md:text-6xl lg:text-7xl">
+                  Um espaço para experimentar o futuro da educação.
+                </h1>
+
+                {/* Descrição */}
+                <p className="mt-7 max-w-2xl text-base leading-relaxed text-white/80 sm:text-lg md:text-xl">
+                  Ambiente controlado para testar, documentar e avaliar o uso de
+                  Inteligência Artificial em contextos educacionais reais.
+                </p>
+
+                {/* Botões */}
+                <div className="mt-10 flex flex-col gap-4 sm:flex-row">
+                  <button className="rounded-2xl bg-white px-7 py-4 font-semibold text-(--blue) shadow-lg transition hover:-translate-y-1 hover:shadow-xl">
+                    Acessar plataforma →
+                  </button>
+
+                  <a
+                    href="#sobre"
+                    className="rounded-2xl border border-white/30 bg-white/10 px-7 py-4 text-center font-semibold text-white backdrop-blur-sm transition hover:bg-white/20"
+                  >
+                    Conheça o Sandbox
+                  </a>
+                </div>
               </div>
 
-              <h1 className="max-w-3xl text-5xl font-bold leading-[1.1] tracking-tight text-(--foreground) md:text-6xl lg:text-7xl">
-                Um espaço para{" "}
-                <span className="text-(--primary)">experimentar</span> o futuro
-                da educação.
-              </h1>
+              {/* PAINEL */}
+              <div className="relative">
+                <div className="rounded-4xl border border-(--border) bg-(--surface) p-6 text-(--foreground) shadow-2xl sm:p-8 md:p-10">
+                  {/* Topo do painel */}
+                  <div className="flex items-center gap-4">
+                    <div className="flex h-14 w-14 shrink-0 items-center justify-center rounded-2xl bg-(--blue) text-2xl text-white">
+                      ✦
+                    </div>
 
-              <p className="mt-8 max-w-xl text-lg leading-relaxed text-(--muted) md:text-xl">
-                Um ambiente colaborativo para desenvolver, testar e acompanhar
-                soluções de Inteligência Artificial que podem transformar a
-                educação.
-              </p>
+                    <div>
+                      <h2 className="text-lg font-bold text-(--foreground) sm:text-xl">
+                        Sandbox Regulatório
+                      </h2>
 
-              {/* botões */}
-              <div className="mt-10 flex flex-wrap gap-4">
-                <button className="rounded-2xl bg-(--primary) px-7 py-4 font-semibold text-white shadow-lg transition hover:-translate-y-1 hover:bg-(--primary-dark)">
-                  Conheça o Sandbox →
-                </button>
+                      <p className="mt-1 text-sm text-(--muted)">
+                        Inteligência Artificial na Educação
+                      </p>
+                    </div>
+                  </div>
 
-                <button className="rounded-2xl border border-(--border) bg-(--surface) px-7 py-4 font-semibold text-(--foreground) transition hover:bg-(--primary-light)">
-                  Como funciona
-                </button>
+                  {/* Lista */}
+                  <div className="mt-8 space-y-5">
+                    <div className="flex items-start gap-3">
+                      <div className="mt-0.5 flex h-6 w-6 shrink-0 items-center justify-center rounded-full border-2 border-(--success) text-xs font-bold text-(--success)">
+                        ✓
+                      </div>
+
+                      <p className="leading-relaxed text-(--foreground)">
+                        Experimentação responsável em ambientes educacionais.
+                      </p>
+                    </div>
+
+                    <div className="flex items-start gap-3">
+                      <div className="mt-0.5 flex h-6 w-6 shrink-0 items-center justify-center rounded-full border-2 border-(--success) text-xs font-bold text-(--success)">
+                        ✓
+                      </div>
+
+                      <p className="leading-relaxed text-(--foreground)">
+                        Evidências acompanhadas e documentadas durante a
+                        jornada.
+                      </p>
+                    </div>
+
+                    <div className="flex items-start gap-3">
+                      <div className="mt-0.5 flex h-6 w-6 shrink-0 items-center justify-center rounded-full border-2 border-(--success) text-xs font-bold text-(--success)">
+                        ✓
+                      </div>
+
+                      <p className="leading-relaxed text-(--foreground)">
+                        Colaboração entre instituições, especialistas e
+                        participantes.
+                      </p>
+                    </div>
+
+                    <div className="flex items-start gap-3">
+                      <div className="mt-0.5 flex h-6 w-6 shrink-0 items-center justify-center rounded-full border-2 border-(--success) text-xs font-bold text-(--success)">
+                        ✓
+                      </div>
+
+                      <p className="leading-relaxed text-(--foreground)">
+                        Acompanhamento para apoiar decisões responsáveis sobre
+                        IA.
+                      </p>
+                    </div>
+                  </div>
+
+                  {/* Botão interno */}
+                  <button className="mt-8 w-full rounded-2xl bg-(--blue) px-6 py-4 font-semibold text-white transition hover:bg-(--blue-dark)">
+                    Conheça a plataforma
+                  </button>
+                </div>
               </div>
             </div>
 
-            {/* ELEMENTO VISUAL */}
-            <div className="relative flex min-h-125 items-center justify-center py-12 md:min-h-125 md:py-0">
-              {/* círculo externo */}
-              <div className="absolute left-1/2 top-1/2 h-105 w-105 -translate-x-1/2 -translate-y-1/2 rounded-full border border-(--border)" />
-
-              {/* círculo interno */}
-              <div className="absolute left-1/2 top-1/2 h-85 w-85 -translate-x-1/2 -translate-y-1/2 rounded-full bg-(--primary-light)" />
-
-              {/* card principal */}
-              <div className="relative z-10 w-full max-w-sm rounded-3xl border border-(--border) bg-(--surface) p-6 shadow-xl md:p-8">
-                <div className="flex items-center justify-between">
-                  <span className="rounded-xl bg-(--primary-light) px-3 py-2 text-sm font-semibold text-(--primary)">
-                    EM DESENVOLVIMENTO
-                  </span>
-
-                  <span className="text-2xl">✦</span>
+            {/* INDICADORES */}
+            <div className="mt-16 grid grid-cols-2 gap-8 border-t border-white/20 pt-10 md:grid-cols-4 lg:mt-20">
+              <div>
+                <div className="text-3xl font-bold text-white md:text-4xl">
+                  —
                 </div>
+                <p className="mt-2 text-sm text-white/70">projetos ativos</p>
+              </div>
 
-                <h2 className="mt-8 text-2xl font-bold text-(--foreground)">
-                  Ideias em movimento
-                </h2>
+              <div>
+                <div className="text-3xl font-bold text-white md:text-4xl">
+                  —
+                </div>
+                <p className="mt-2 text-sm text-white/70">instituições</p>
+              </div>
 
-                <p className="mt-3 leading-relaxed text-(--muted)">
-                  Um ecossistema para transformar ideias em soluções reais para
-                  a educação.
+              <div>
+                <div className="text-3xl font-bold text-white md:text-4xl">
+                  —
+                </div>
+                <p className="mt-2 text-sm text-white/70">
+                  evidências registradas
                 </p>
-
-                {/* barra */}
-                <div className="mt-8">
-                  <div className="mb-3 flex justify-between text-sm">
-                    <span className="text-(--muted)">Jornada</span>
-
-                    <span className="font-semibold text-(--primary)">68%</span>
-                  </div>
-
-                  <div className="h-3 overflow-hidden rounded-full bg-(--primary-light)">
-                    <div className="h-full w-[68%] rounded-full bg-(--primary)" />
-                  </div>
-                </div>
               </div>
 
-              {/* projetos */}
-              <div className="absolute left-0 top-16 z-20 rounded-2xl bg-(--surface) px-5 py-4 shadow-lg">
-                <div className="text-sm text-(--muted)">Projetos</div>
-
-                <div className="mt-1 text-2xl font-bold text-(--primary)">
-                  +24
+              <div>
+                <div className="text-3xl font-bold text-white md:text-4xl">
+                  —
                 </div>
-              </div>
-
-              {/* progresso */}
-              <div className="absolute bottom-8 right-0 z-20 rounded-2xl bg-(--surface) px-5 py-4 shadow-lg">
-                <div className="text-sm text-(--muted)">Progresso</div>
-
-                <div className="mt-1 text-2xl font-bold text-(--secondary)">
-                  ✦ Evoluindo
-                </div>
+                <p className="mt-2 text-sm text-white/70">participantes</p>
               </div>
             </div>
           </div>
