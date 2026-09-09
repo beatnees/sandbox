@@ -29,7 +29,7 @@ export default function Home() {
                   <span className="h-2 w-2 rounded-full bg-(--secondary)" />
 
                   <span className="text-sm font-semibold text-white">
-                    Ciclo 2026 — em andamento
+                    Ciclo 2026
                   </span>
                 </div>
 
@@ -169,16 +169,16 @@ export default function Home() {
         </section>
 
         {/* SOBRE */}
-        <section id="sobre" className="px-6 py-12 md:py-24">
+        <section id="sobre" className="bg-(--background) px-6 py-20 md:py-28">
           <div className="mx-auto max-w-7xl">
             {/* cabeçalho */}
             <div className="mx-auto max-w-3xl text-center">
-              <span className="inline-flex items-center rounded-full bg-(--secondary-light) px-4 py-2 text-sm font-semibold text-(--secondary)">
+              <span className="text-sm font-semibold uppercase tracking-widest text-(--blue)">
                 Sobre o Sandbox
               </span>
-              <h2 className="mt-6 text-3xl font-bold tracking-tight text-(--foreground) md:text-5xl">
-                Experimentar também é uma forma de
-                <span className="text-(--primary)"> construir o futuro.</span>
+
+              <h2 className="mt-4 text-3xl font-bold tracking-tight text-(--foreground) md:text-5xl">
+                Um ambiente seguro para experimentar, aprender e evoluir.{" "}
               </h2>
 
               <p className="mt-6 text-lg leading-relaxed text-(--muted)">
@@ -192,7 +192,7 @@ export default function Home() {
             <div className="mt-16 grid gap-6 md:grid-cols-3">
               {/* card 1 */}
               <div className="rounded-3xl border border-(--border) bg-(--surface) p-8 shadow-sm transition hover:-translate-y-1 hover:shadow-lg">
-                <div className="flex h-12 w-12 items-center justify-center rounded-2xl bg-(--primary-light) text-2xl">
+                <div className="flex h-12 w-12 items-center justify-center rounded-2xl bg-(--primary-light) text-2xl text-(--primary)">
                   ✦
                 </div>
                 <h3 className="mt-6 text-xl font-bold text-(--foreground)">
@@ -206,7 +206,7 @@ export default function Home() {
 
               {/* card 2 */}
               <div className="rounded-3xl border border-(--border) bg-(--surface) p-8 shadow-sm transition hover:-translate-y-1 hover:shadow-lg">
-                <div className="flex h-12 w-12 items-center justify-center rounded-2xl bg-(--primary-light) text-2xl">
+                <div className="flex h-12 w-12 items-center justify-center rounded-2xl bg-(--primary-light) text-2xl text-(--primary)">
                   ✦
                 </div>
                 <h3 className="mt-6 text-xl font-bold text-(--foreground)">
@@ -220,7 +220,7 @@ export default function Home() {
 
               {/* card 3 */}
               <div className="rounded-3xl border border-(--border) bg-(--surface) p-8 shadow-sm transition hover:-translate-y-1 hover:shadow-lg">
-                <div className="flex h-12 w-12 items-center justify-center rounded-2xl bg-(--primary-light) text-2xl">
+                <div className="flex h-12 w-12 items-center justify-center rounded-2xl bg-(--primary-light) text-2xl text-(--primary)">
                   ↗
                 </div>
                 <h3 className="mt-6 text-xl font-bold text-(--foreground)">
