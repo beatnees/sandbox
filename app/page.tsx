@@ -207,7 +207,7 @@ export default function Home() {
               {/* card 2 */}
               <div className="rounded-3xl border border-(--border) bg-(--surface) p-8 shadow-sm transition hover:-translate-y-1 hover:shadow-lg">
                 <div className="flex h-12 w-12 items-center justify-center rounded-2xl bg-(--primary-light) text-2xl text-(--primary)">
-                  ✦
+                  ◇
                 </div>
                 <h3 className="mt-6 text-xl font-bold text-(--foreground)">
                   Experimentar
@@ -229,6 +229,95 @@ export default function Home() {
                 <p className="mt-3 leading-relaxed text-(--muted)">
                   Transforme aprendizados em soluções que possam gerar impacto
                   real para estudantes, educadores e instituições.
+                </p>
+              </div>
+            </div>
+          </div>
+        </section>
+
+        {/* como funciona */}
+        <section
+          id="como-funciona"
+          className="bg-(--surface) px-6 py-20 md:py-28"
+        >
+          <div className="mx-auto max-w-7xl">
+            {/* cabeçalho */}
+            <div className="mx-auto max-w-3xl text-center">
+              <span className="text-sm font-semibold uppercase tracking-[0.18em] text-(--blue)">
+                Como funciona
+              </span>
+
+              <h2 className="mt-4 text-3xl font-bold tracking-tight text-(--foreground) md:text-5xl">
+                Pilares para inovação responsável.
+              </h2>
+              <p className="mt-6 text-l leading-relaxed text-(--muted)">
+                O Sandbox organiza a experimentação em etapas claras, garantindo
+                que cada inovação seja testada cocm segurança, ética e
+                colaboração.
+              </p>
+            </div>
+
+            {/* pilares */}
+            <div className="mt-16 grid gap-6 md:grid-cols-2 xl:grid-cols-4">
+              {/* pilar 1 */}
+              <div className="relative rounded-3xl border border-(--border) bg-(--background) p-8">
+                <div className="flex h-12 w-12 items-center justify-center rounded-2xl bg-(--primary-light) text-2xl text-(--primary)">
+                  ✦
+                </div>
+
+                <h3 className="mt-6 text-xl font-bold text-(--foreground)">
+                  Governança e proteção de dados
+                </h3>
+                <p>
+                  A proposta é submetida com informações sobre a solução,
+                  objetivos, público e contexto.
+                </p>
+              </div>
+
+              {/* pilar 2 */}
+              <div className="relative rounded-3xl border border-(--border) bg-(--background) p-8">
+                <div className="flex h-12 w-12 items-center justify-center rounded-2xl bg-(--primary-light) text-2xl text-(--primary)">
+                  ✦
+                </div>
+
+                <h3 className="mt-6 text-xl font-bold text-(--foreground)">
+                  Colaboração institucional
+                </h3>
+                <p>
+                  A proposta é submetida com informações sobre a solução,
+                  objetivos, público e contexto.
+                </p>
+              </div>
+
+              {/* etapa 3 */}
+
+              <div className="relative rounded-3xl border border-(--border) bg-(--background) p-8">
+                <div className="flex h-12 w-12 items-center justify-center rounded-2xl bg-(--primary-light) text-2xl text-(--primary)">
+                  ✦
+                </div>
+
+                <h3 className="mt-6 text-xl font-bold text-(--foreground)">
+                  Evidências para política pública
+                </h3>
+                <p>
+                  A proposta é submetida com informações sobre a solução,
+                  objetivos, público e contexto.
+                </p>
+              </div>
+
+              {/* etapa 4 */}
+
+              <div className="relative rounded-3xl border border-(--border) bg-(--background) p-8">
+                <div className="flex h-12 w-12 items-center justify-center rounded-2xl bg-(--primary-light) text-2xl text-(--primary)">
+                  ✦
+                </div>
+
+                <h3 className="mt-6 text-xl font-bold text-(--foreground)">
+                  Inovação com supervisão humana
+                </h3>
+                <p>
+                  A proposta é submetida com informações sobre a solução,
+                  objetivos, público e contexto.
                 </p>
               </div>
             </div>
