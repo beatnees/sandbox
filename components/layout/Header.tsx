@@ -1,3 +1,5 @@
+import { Bot } from "lucide-react";
+
 export default function Header() {
   return (
     <header className="sticky top-0 z-50 w-full border-b border-(--border) bg-(--surface)/95 backdrop-blur">
@@ -5,7 +7,7 @@ export default function Header() {
         {/* Logo */}
         <a href="/sandbox" className="flex items-center gap-3">
           <div className="flex h-11 w-11 items-center justify-center rounded-2xl bg-(--blue) text-xl text-(--t-white) shadow-sm">
-            ✦
+            <Bot size={24} strokeWidth={2} />
           </div>
 
           <div className="flex flex-col sm:block">

@@ -1,13 +1,14 @@
 import Header from "@/components/layout/Header";
+import { ShieldCheck, TrendingUp, Lightbulb, UsersRound } from "lucide-react";
 
 export default function Home() {
   return (
     <>
       <Header />
 
-      <main className="bg-(--background)">
-        {/* HERO */}
-        <section className="relative overflow-hidden bg-linear-to-br from-(--blue-dark) via-(--blue) to-(--primary) px-6 py-16 text-(--surface) md:py-24">
+      <main className="bg-background)">
+        {/* hero */}
+        <section className="relative overflow-hidden bg-gradient-hero px-6 py-16 text-white md:py-24">
           {/* textura decorativa */}
           <div
             className="
@@ -26,7 +27,7 @@ export default function Home() {
               <div>
                 {/* Badge */}
                 <div className="inline-flex items-center gap-2 rounded-full border border-white/30 bg-white/10 px-4 py-2 backdrop-blur-sm">
-                  <span className="h-2 w-2 rounded-full bg-(--secondary)" />
+                  <span className="h-2 w-2 rounded-full bg-secondary" />
 
                   <span className="text-sm font-semibold text-white">
                     Ciclo 2026
@@ -46,10 +47,9 @@ export default function Home() {
 
                 {/* Botões */}
                 <div className="mt-10 flex flex-col gap-4 sm:flex-row">
-                  <button className="rounded-2xl bg-white px-7 py-4 font-semibold text-(--blue) shadow-lg transition hover:-translate-y-1 hover:shadow-xl">
+                  <button className="rounded-2xl bg-white px-7 py-4 font-semibold text-primary shadow-lg transition hover:-translate-y-1 hover:shadow-xl">
                     Acessar plataforma →
                   </button>
-
                   <a
                     href="#sobre"
                     className="rounded-2xl border border-white/30 bg-white/10 px-7 py-4 text-center font-semibold text-white backdrop-blur-sm transition hover:bg-white/20"
@@ -61,19 +61,19 @@ export default function Home() {
 
               {/* PAINEL */}
               <div className="relative">
-                <div className="rounded-4xl border border-(--border) bg-(--surface) p-6 text-(--foreground) shadow-2xl sm:p-8 md:p-10">
+                <div className="rounded-4xl border border-border bg-card p-6 text-card-foreground shadow-2xl sm:p-8 md:p-10">
                   {/* Topo do painel */}
                   <div className="flex items-center gap-4">
-                    <div className="flex h-14 w-14 shrink-0 items-center justify-center rounded-2xl bg-(--blue) text-2xl text-white">
+                    <div className="flex h-14 w-14 shrink-0 items-center justify-center rounded-2xl bg-primary text-2xl text-primary-foreground">
                       ✦
                     </div>
 
                     <div>
-                      <h2 className="text-lg font-bold text-(--foreground) sm:text-xl">
+                      <h2 className="text-lg font-bold text-foreground sm:text-xl">
                         Sandbox Regulatório
                       </h2>
 
-                      <p className="mt-1 text-sm text-(--muted)">
+                      <p className="mt-1 text-sm text-muted-foreground">
                         Inteligência Artificial na Educação
                       </p>
                     </div>
@@ -82,17 +82,17 @@ export default function Home() {
                   {/* Lista */}
                   <div className="mt-8 space-y-5">
                     <div className="flex items-start gap-3">
-                      <div className="mt-0.5 flex h-6 w-6 shrink-0 items-center justify-center rounded-full border-2 border-(--success) text-xs font-bold text-(--success)">
+                      <div className="mt-0.5 flex h-6 w-6 shrink-0 items-center justify-center rounded-full border-2 border-success text-xs font-bold text-success">
                         ✓
                       </div>
 
-                      <p className="leading-relaxed text-(--foreground)">
+                      <p className="leading-relaxed text-foreground">
                         Experimentação responsável em ambientes educacionais.
                       </p>
                     </div>
 
                     <div className="flex items-start gap-3">
-                      <div className="mt-0.5 flex h-6 w-6 shrink-0 items-center justify-center rounded-full border-2 border-(--success) text-xs font-bold text-(--success)">
+                      <div className="mt-0.5 flex h-6 w-6 shrink-0 items-center justify-center rounded-full border-2 border-success text-xs font-bold text-(--success)">
                         ✓
                       </div>
 
@@ -126,7 +126,7 @@ export default function Home() {
                   </div>
 
                   {/* Botão interno */}
-                  <button className="mt-8 w-full rounded-2xl bg-(--blue) px-6 py-4 font-semibold text-white transition hover:bg-(--blue-dark)">
+                  <button className="mt-8 w-full rounded-2xl bg-primary px-6 py-4 font-semibold text-primary-foreground transition hover:brightness-95">
                     Conheça a plataforma
                   </button>
                 </div>
@@ -169,88 +169,40 @@ export default function Home() {
         </section>
 
         {/* SOBRE */}
-        <section id="sobre" className="bg-(--background) px-6 py-20 md:py-28">
+        <section id="sobre" className="bg-background px-6 py-20 md:py-28">
           <div className="mx-auto max-w-7xl">
             {/* cabeçalho */}
             <div className="mx-auto max-w-3xl text-center">
-              <span className="text-sm font-semibold uppercase tracking-widest text-(--blue)">
+              <span className="text-sm font-semibold uppercase tracking-widest text-primary">
                 Sobre o Sandbox
               </span>
 
-              <h2 className="mt-4 text-3xl font-bold tracking-tight text-(--foreground) md:text-5xl">
+              <h2 className="mt-4 text-3xl font-bold tracking-tight text-foreground md:text-5xl">
                 Um ambiente seguro para experimentar, aprender e evoluir.{" "}
               </h2>
 
-              <p className="mt-6 text-lg leading-relaxed text-(--muted)">
+              <p className="mt-6 text-lg leading-relaxed text-muted">
                 O Sandbox é um espaço colaborativo para desenvolver, testar e
                 acompanhar soluções de Inteligência Artificial que podem
                 transformar a educação.
               </p>
             </div>
-
-            {/* cards */}
-            <div className="mt-16 grid gap-6 md:grid-cols-3">
-              {/* card 1 */}
-              <div className="rounded-3xl border border-(--border) bg-(--surface) p-8 shadow-sm transition hover:-translate-y-1 hover:shadow-lg">
-                <div className="flex h-12 w-12 items-center justify-center rounded-2xl bg-(--primary-light) text-2xl text-(--primary)">
-                  ✦
-                </div>
-                <h3 className="mt-6 text-xl font-bold text-(--foreground)">
-                  Explorar
-                </h3>
-                <p className="mt-3 leading-relaxed text-(--muted)">
-                  Descubra possibilidades e identifique oportunidades para o uso
-                  responsável da Inteligência Artificial na educação.
-                </p>
-              </div>
-
-              {/* card 2 */}
-              <div className="rounded-3xl border border-(--border) bg-(--surface) p-8 shadow-sm transition hover:-translate-y-1 hover:shadow-lg">
-                <div className="flex h-12 w-12 items-center justify-center rounded-2xl bg-(--primary-light) text-2xl text-(--primary)">
-                  ◇
-                </div>
-                <h3 className="mt-6 text-xl font-bold text-(--foreground)">
-                  Experimentar
-                </h3>
-                <p className="mt-3 leading-relaxed text-(--muted)">
-                  Teste ideias em um ambiente seguro, acompanhe resultados e
-                  aprenda com cada experiência.
-                </p>
-              </div>
-
-              {/* card 3 */}
-              <div className="rounded-3xl border border-(--border) bg-(--surface) p-8 shadow-sm transition hover:-translate-y-1 hover:shadow-lg">
-                <div className="flex h-12 w-12 items-center justify-center rounded-2xl bg-(--primary-light) text-2xl text-(--primary)">
-                  ↗
-                </div>
-                <h3 className="mt-6 text-xl font-bold text-(--foreground)">
-                  Evoluir
-                </h3>
-                <p className="mt-3 leading-relaxed text-(--muted)">
-                  Transforme aprendizados em soluções que possam gerar impacto
-                  real para estudantes, educadores e instituições.
-                </p>
-              </div>
-            </div>
           </div>
         </section>
 
         {/* como funciona */}
-        <section
-          id="como-funciona"
-          className="bg-(--surface) px-6 py-20 md:py-28"
-        >
+        <section id="como-funciona" className="bg-surface px-6 py-20 md:py-28">
           <div className="mx-auto max-w-7xl">
             {/* cabeçalho */}
             <div className="mx-auto max-w-3xl text-center">
-              <span className="text-sm font-semibold uppercase tracking-[0.18em] text-(--blue)">
+              <span className="text-sm font-semibold uppercase tracking-[0.18em] text-primary">
                 Como funciona
               </span>
 
-              <h2 className="mt-4 text-3xl font-bold tracking-tight text-(--foreground) md:text-5xl">
+              <h2 className="mt-4 text-3xl font-bold tracking-tight text-foreground md:text-5xl">
                 Pilares para inovação responsável.
               </h2>
-              <p className="mt-6 text-l leading-relaxed text-(--muted)">
+              <p className="mt-6 text-l leading-relaxed text-muted">
                 O Sandbox organiza a experimentação em etapas claras, garantindo
                 que cada inovação seja testada cocm segurança, ética e
                 colaboração.
@@ -260,12 +212,12 @@ export default function Home() {
             {/* pilares */}
             <div className="mt-16 grid gap-6 md:grid-cols-2 xl:grid-cols-4">
               {/* pilar 1 */}
-              <div className="relative rounded-3xl border border-(--border) bg-(--background) p-8">
-                <div className="flex h-12 w-12 items-center justify-center rounded-2xl bg-(--primary-light) text-2xl text-(--primary)">
-                  ✦
+              <div className="relative rounded-3xl border border-border bg-background p-8 shadow-sm transition hover:translate-y-1 hover:shadow-lg">
+                <div className="flex h-12 w-12 items-center justify-center rounded-2xl bg-(--primary-light) text-2xl text-secondary">
+                  <ShieldCheck size={24} strokeWidth={2} />
                 </div>
 
-                <h3 className="mt-6 text-xl font-bold text-(--foreground)">
+                <h3 className="mt-6 text-xl font-bold text-foreground">
                   Governança e proteção de dados
                 </h3>
                 <p>
@@ -275,9 +227,9 @@ export default function Home() {
               </div>
 
               {/* pilar 2 */}
-              <div className="relative rounded-3xl border border-(--border) bg-(--background) p-8">
-                <div className="flex h-12 w-12 items-center justify-center rounded-2xl bg-(--primary-light) text-2xl text-(--primary)">
-                  ✦
+              <div className="relative rounded-3xl border border-(--border) bg-(--background) p-8 shadow-sm transition hover:translate-y-1 hover:shadow-lg">
+                <div className="flex h-12 w-12 items-center justify-center rounded-2xl bg-(--primary-light) text-2xl text-(--secondary)">
+                  <UsersRound size={24} strokeWidth={2} />
                 </div>
 
                 <h3 className="mt-6 text-xl font-bold text-(--foreground)">
@@ -291,9 +243,9 @@ export default function Home() {
 
               {/* etapa 3 */}
 
-              <div className="relative rounded-3xl border border-(--border) bg-(--background) p-8">
-                <div className="flex h-12 w-12 items-center justify-center rounded-2xl bg-(--primary-light) text-2xl text-(--primary)">
-                  ✦
+              <div className="relative rounded-3xl border border-(--border) bg-(--background) p-8 shadow-sm transition hover:translate-y-1 hover:shadow-lg">
+                <div className="flex h-12 w-12 items-center justify-center rounded-2xl bg-(--primary-light) text-2xl text-(--secondary)">
+                  <TrendingUp size={24} strokeWidth={2} />
                 </div>
 
                 <h3 className="mt-6 text-xl font-bold text-(--foreground)">
@@ -307,9 +259,9 @@ export default function Home() {
 
               {/* etapa 4 */}
 
-              <div className="relative rounded-3xl border border-(--border) bg-(--background) p-8">
-                <div className="flex h-12 w-12 items-center justify-center rounded-2xl bg-(--primary-light) text-2xl text-(--primary)">
-                  ✦
+              <div className="relative rounded-3xl border border-(--border) bg-(--background) p-8 shadow-sm transition hover:translate-y-1 hover:shadow-lg">
+                <div className="flex h-12 w-12 items-center justify-center rounded-2xl bg-(--primary-light) text-2xl text-(--secondary)">
+                  <Lightbulb size={24} strokeWidth={2} />
                 </div>
 
                 <h3 className="mt-6 text-xl font-bold text-(--foreground)">
@@ -320,6 +272,51 @@ export default function Home() {
                   objetivos, público e contexto.
                 </p>
               </div>
+            </div>
+          </div>
+        </section>
+
+        <section
+          id="projetos"
+          className="bg-(--background) px-6 py-20 md:py-28"
+        >
+          <div className="mx-auto max-w-7xl">
+            {/* cabeçalho */}
+            <div className="flex flex-col gap-6 md:flex-row md:items-end md:justify-between">
+              <div className="max-w-2xl">
+                <span className="text-sm font-semibold uppercase tracking-[0.18em] text-(--blue)">
+                  Projetos
+                </span>
+
+                <h2 className="mt-5 text-lg leading-relaxed text-(--muted)">
+                  Experimentos em destaque
+                </h2>
+
+                <p className="mt-5 text-lg leading-relaxed text-(--muted)">
+                  Conheça alguns dos projetos
+                </p>
+              </div>
+              <a
+                href="#"
+                className="font-semibold text-(--blue) transition hover:text-(--blue-dark)"
+              >
+                Ver todos os projetos →
+              </a>
+            </div>
+
+            {/* cards */}
+
+            <div className="mt-14 grid gap-6 lg:grid-cols-3">
+              {/* projeto 1*/}
+              <article className="flez flex-col rounded-3xl border border-(--border) bg-(--surface) p-7 shadow-sm transition hover:translate-y-1 hover:shadow-lg">
+                {/* status */}
+                <div>
+                  <span className="inline-flex items-center gap-2 rounded-full bg-(--blue-light) px-3 py-1.5 text-xs font-semibold text-(--blue)">
+                    <span className="h-2 w-2 rounded-full bg-(--blue)" />
+                    Em experimentação
+                  </span>
+                </div>
+              </article>
             </div>
           </div>
         </section>
