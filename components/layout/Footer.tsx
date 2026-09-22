@@ -1,4 +1,5 @@
 import Link from "next/link";
+import LoginModal from "../auth/LoginModal";
 import { Bot } from "lucide-react";
 
 export default function Footer() {
@@ -58,18 +59,15 @@ export default function Footer() {
           <div>
             <h3 className="font-semibold text-foreground">Plataforma</h3>
             <div className="mt-5 flex flex-col gap-3">
-              <Link
-                href="/login"
-                className="text-sm text-muted-foreground transition hover:text-primary"
-              >
-                Acessar plataforma
-              </Link>
-              <Link
-                href="/login"
-                className="text-sm text-muted-foreground transition hover:text-primary"
-              >
-                Entrar
-              </Link>
+              <LoginModal
+                label="Acessar plataforma"
+                className="w-fit text-left text-sm text-muted-foreground transition hover:text-primary"
+              />
+
+              <LoginModal
+                label="Entrar"
+                className="w-fit text-left text-sm text-muted-foreground transition hover:text-primary"
+              />
             </div>
           </div>
         </div>
