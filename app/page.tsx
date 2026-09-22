@@ -1,4 +1,5 @@
 import Header from "@/components/layout/Header";
+import LoginModal from "@/components/auth/LoginModal";
 import Footer from "@/components/layout/Footer";
 import { ShieldCheck, TrendingUp, Lightbulb, UsersRound } from "lucide-react";
 
@@ -78,9 +79,10 @@ export default function Home() {
 
                 {/* Botões */}
                 <div className="mt-10 flex flex-col gap-4 sm:flex-row">
-                  <button className="rounded-2xl bg-white px-7 py-4 font-semibold text-primary shadow-lg transition hover:-translate-y-1 hover:shadow-xl">
-                    Acessar plataforma →
-                  </button>
+                  <LoginModal
+                    label="Acessar plataforma →"
+                    className="rounded-2xl bg-white px-7 py-4 font-semibold text-primary shadow-lg transition hover:-translate-y-1 hover:shadow-xl"
+                  />
                   <a
                     href="#sobre"
                     className="rounded-2xl border border-white/30 bg-white/10 px-7 py-4 text-center font-semibold text-white backdrop-blur-sm transition hover:bg-white/20"

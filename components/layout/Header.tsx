@@ -1,4 +1,5 @@
 "use client";
+import LoginModal from "../auth/LoginModal";
 import { useState } from "react";
 import Link from "next/link";
 import { Menu, X, Bot } from "lucide-react";
@@ -60,12 +61,10 @@ export default function Header() {
         {/* área direita */}
         <div className="flex items-center gap-3">
           {/* botão desktop */}
-          <Link
-            href="/login"
+          <LoginModal
+            label="Acessar plataforma"
             className="hidden rounded-xl bg-primary px-5 py-2.5 text-sm font-semibold text-primary-foreground shadow-sm transition hover:brightness-95 sm:block"
-          >
-            Acessar plataforma
-          </Link>
+          />
 
           {/* menu mobile */}
           <button
