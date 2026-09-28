@@ -3,6 +3,7 @@
 import { useEffect, useState } from "react";
 import { createPortal } from "react-dom";
 import { LockKeyhole, Mail, X } from "lucide-react";
+import { useRouter } from "next/navigation";
 
 type LoginModalProps = {
   className?: string;
@@ -40,6 +41,7 @@ export default function LoginModal({
 }: LoginModalProps) {
   const [aberto, setAberto] = useState(false);
   const [perfil, setPerfil] = useState("participante");
+  const router = useRouter();
 
   useEffect(() => {
     if (!aberto) return;
@@ -62,6 +64,12 @@ export default function LoginModal({
     };
   }, [aberto]);
 
+  const entrar = (event: React.FormEvent<HTMLFormElement>) => {
+    event.preventDefault();
+
+    setAberto(false);
+    router.push("/dashboard");
+  };
   const abrirModal = () => {
     onOpen?.();
     setAberto(true);
@@ -108,7 +116,7 @@ export default function LoginModal({
               </p>
             </div>
 
-            <form className="mt-8 space-y-6">
+            <form onSubmit={entrar} className="mt-8 space-y-6">
               {/* E-mail */}
               <div>
                 <label

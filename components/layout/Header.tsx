@@ -113,7 +113,6 @@ export default function Header() {
 
             <LoginModal
               label="Acessar plataforma"
-              onOpen={() => setMenuOpen(false)}
               className="mt-3 rounded-xl bg-primary px-5 py-3 text-center font-semibold text-primary-foreground"
             />
           </nav>
