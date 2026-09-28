@@ -1,4 +1,5 @@
 import { FolderKanban, FileCheck2, Building2, ArrowRight } from "lucide-react";
+import Link from "next/link";
 
 export default function DashboardPage() {
   return (
@@ -78,10 +79,13 @@ export default function DashboardPage() {
               </p>
             </div>
 
-            <button className="flex items-center gap-2 text-sm font-semibold text-primary">
+            <Link
+              href="/dashboard/projetos"
+              className="flex items-center gap-2 text-sm font-semibold text-primary transition hover:gap-3"
+            >
               Ver todos
               <ArrowRight size={17} />
-            </button>
+            </Link>
           </div>
 
           <div className="mt-6 rounded-3xl border border-border bg-card shadow-card">
