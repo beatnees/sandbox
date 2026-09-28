@@ -2,24 +2,7 @@ import { FolderKanban, FileCheck2, Building2, ArrowRight } from "lucide-react";
 
 export default function DashboardPage() {
   return (
-    <main className="min-h-screen bg-background">
-      {/* Header interno */}
-      <header className="border-b border-border bg-card">
-        <div className="mx-auto flex h-20 max-w-7xl items-center justify-between px-6">
-          <div>
-            <p className="text-sm text-muted-foreground">Sandbox Regulatório</p>
-
-            <h1 className="font-display text-xl font-bold text-foreground">
-              Painel
-            </h1>
-          </div>
-
-          <div className="flex h-10 w-10 items-center justify-center rounded-full bg-primary-soft font-semibold text-primary">
-            A
-          </div>
-        </div>
-      </header>
-
+    <>
       <div className="mx-auto max-w-7xl px-6 py-10">
         {/* Boas-vindas */}
         <div>
@@ -138,6 +121,6 @@ export default function DashboardPage() {
           </div>
         </section>
       </div>
-    </main>
+    </>
   );
 }
