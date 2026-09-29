@@ -1,9 +1,10 @@
 "use client";
 
-import { useEffect, useState } from "react";
+import { useEffect, useState, type FormEvent } from "react";
 import { createPortal } from "react-dom";
 import { LockKeyhole, Mail, X } from "lucide-react";
 import { useRouter } from "next/navigation";
+import { createClient } from "@/lib/supabase/cliente";
 
 type LoginModalProps = {
   className?: string;
@@ -11,36 +12,17 @@ type LoginModalProps = {
   onOpen?: () => void;
 };
 
-const perfis = [
-  {
-    id: "participante",
-    titulo: "Participante",
-    descricao: "Instituição ou equipe participante do Sandbox",
-  },
-  {
-    id: "gestor",
-    titulo: "Gestor",
-    descricao: "Gestão e acompanhamento institucional",
-  },
-  {
-    id: "especialista",
-    titulo: "Especialista / Avaliador",
-    descricao: "Avaliação técnica e acompanhamento dos projetos",
-  },
-  {
-    id: "administrador",
-    titulo: "Administrador",
-    descricao: "Administração geral da plataforma",
-  },
-];
-
 export default function LoginModal({
   className = "",
   label = "Acessar plataforma",
   onOpen,
 }: LoginModalProps) {
   const [aberto, setAberto] = useState(false);
-  const [perfil, setPerfil] = useState("participante");
+  const [email, setEmail] = useState("");
+  const [senha, setSenha] = useState("");
+  const [erro, setErro] = useState("");
+  const [carregando, setCarregando] = useState(false);
+
   const router = useRouter();
 
   useEffect(() => {
@@ -64,12 +46,49 @@ export default function LoginModal({
     };
   }, [aberto]);
 
-  const entrar = (event: React.FormEvent<HTMLFormElement>) => {
+  const entrar = async (event: FormEvent<HTMLFormElement>) => {
     event.preventDefault();
+
+    setErro("");
+    setCarregando(true);
+
+    const supabase = createClient();
+
+    const { data, error } = await supabase.auth.signInWithPassword({
+      email,
+      password: senha,
+    });
+
+    if (error) {
+      setErro("E-mail ou senha inválidos.");
+      setCarregando(false);
+      return;
+    }
+
+    // confere se o usuário possui perfil na plataforma
+
+    const { data: profile, error: profileError } = await supabase
+      .from("profiles")
+      .select("perfil")
+      .eq("id", data.user.id)
+      .single();
+
+    if (profileError || !profile) {
+      await supabase.auth.signOut();
+
+      setErro("Seu usuário não possui perfil configurado na plataforma.");
+
+      setCarregando(false);
+      return;
+    }
+
+    setCarregando(false);
 
     setAberto(false);
     router.push("/dashboard");
+    router.refresh();
   };
+
   const abrirModal = () => {
     onOpen?.();
     setAberto(true);
@@ -134,8 +153,13 @@ export default function LoginModal({
 
                   <input
                     id="login-email"
+                    name="email"
                     type="email"
-                    placeholder="nome@instituicao.edu.br"
+                    value={email}
+                    onChange={(event) => setEmail(event.target.value)}
+                    placeholder="nome@instituicao.br"
+                    autoComplete="email"
+                    required
                     className="h-12 w-full rounded-xl border border-border bg-background pl-11 pr-4 text-sm text-foreground outline-none transition placeholder:text-muted-foreground/60 focus:border-primary focus:ring-2 focus:ring-primary/15"
                   />
                 </div>
@@ -167,65 +191,39 @@ export default function LoginModal({
 
                   <input
                     id="login-senha"
+                    name="senha"
                     type="password"
+                    value={senha}
+                    onChange={(event) => setSenha(event.target.value)}
                     placeholder="Digite sua senha"
+                    autoComplete="current-password"
+                    required
                     className="h-12 w-full rounded-xl border border-border bg-background pl-11 pr-4 text-sm text-foreground outline-none transition placeholder:text-muted-foreground/60 focus:border-primary focus:ring-2 focus:ring-primary/15"
                   />
                 </div>
               </div>
 
               {/* Perfil */}
-              <div>
-                <p className="text-sm font-semibold text-foreground">
-                  Perfil de acesso
+              <div className="rounded-xl bg-muted px-4 py-3">
+                <p className="text-sm leading-relaxed text-muted-foreground">
+                  Seu perfil de acesso será identificado automaticamente após o
+                  login.
                 </p>
-
-                <div className="mt-3 space-y-2">
-                  {perfis.map((item) => {
-                    const selecionado = perfil === item.id;
-
-                    return (
-                      <button
-                        key={item.id}
-                        type="button"
-                        onClick={() => setPerfil(item.id)}
-                        className={`flex w-full items-center justify-between gap-4 rounded-xl border p-4 text-left transition ${
-                          selecionado
-                            ? "border-primary bg-primary-soft"
-                            : "border-border bg-card hover:bg-muted/50"
-                        }`}
-                      >
-                        <div>
-                          <p className="text-sm font-semibold text-foreground">
-                            {item.titulo}
-                          </p>
-
-                          <p className="mt-1 text-xs leading-relaxed text-muted-foreground">
-                            {item.descricao}
-                          </p>
-                        </div>
-
-                        <span
-                          className={`flex h-5 w-5 shrink-0 items-center justify-center rounded-full border ${
-                            selecionado ? "border-primary" : "border-border"
-                          }`}
-                        >
-                          {selecionado && (
-                            <span className="h-2.5 w-2.5 rounded-full bg-primary" />
-                          )}
-                        </span>
-                      </button>
-                    );
-                  })}
-                </div>
               </div>
+
+              {erro && (
+                <div className="rounded-xl bg-destructive-soft px-4 py-3">
+                  <p className="text-sm font-medium text-destructive">{erro}</p>
+                </div>
+              )}
 
               {/* Entrar */}
               <button
                 type="submit"
+                disabled={carregando}
                 className="h-12 w-full rounded-xl bg-primary font-semibold text-primary-foreground transition hover:brightness-95"
               >
-                Entrar
+                {carregando ? "Entrando..." : "Entrar"}
               </button>
             </form>
           </div>
