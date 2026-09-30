@@ -1,7 +1,7 @@
 "use client";
 
 import Link from "next/link";
-import { usePathname } from "next/navigation";
+import { usePathname, useRouter } from "next/navigation";
 import {
   LayoutDashboard,
   FolderKanban,
@@ -10,6 +10,7 @@ import {
   LogOut,
   X,
 } from "lucide-react";
+import { createClient } from "@/lib/supabase/cliente";
 
 type SidebarProps = {
   aberto?: boolean;
@@ -41,6 +42,17 @@ const links = [
 
 export default function Sidebar({ aberto = false, fechar }: SidebarProps) {
   const pathname = usePathname();
+
+  const router = useRouter();
+
+  const sair = async () => {
+    const supabase = createClient();
+
+    await supabase.auth.signOut();
+
+    router.replace("/");
+    router.refresh();
+  };
 
   return (
     <>
@@ -142,13 +154,14 @@ export default function Sidebar({ aberto = false, fechar }: SidebarProps) {
             </div>
           </div>
 
-          <Link
-            href="/"
+          <button
+            type="button"
+            onClick={sair}
             className="flex w-full items-center gap-3 rounded-xl px-4 py-3 text-sm font-medium text-muted-foreground transition hover:bg-destructive-soft hover:text-destructive"
           >
             <LogOut size={19} />
             Sair
-          </Link>
+          </button>
         </div>
       </aside>
     </>
