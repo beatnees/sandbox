@@ -1,7 +1,8 @@
 "use client";
 
-import { useState, useEffect } from "react";
+import { useEffect, useState } from "react";
 import { Menu } from "lucide-react";
+
 import Sidebar from "@/components/dashboard/Sidebar";
 import { createClient } from "@/lib/supabase/cliente";
 
@@ -31,34 +32,34 @@ export default function DashboardLayout({
     perfil: "",
     instituicao: null,
     email: "",
-
   });
 
   useEffect(() => {
     let ativo = true;
+
     const carregarPerfil = async () => {
       const supabase = createClient();
 
       // Usuário autenticado
-      const{
+      const {
         data: { user },
       } = await supabase.auth.getUser();
 
       if (!user || !ativo) return;
 
-      // perfil cadastrado na tabela
+      // Perfil cadastrado na tabela profiles
       const { data: profile } = await supabase
-      .from("profiles")
-      .select("nome, perfil, instituição")
-      .eq("id", user.id)
-      .single();
+        .from("profiles")
+        .select("nome, perfil, instituicao")
+        .eq("id", user.id)
+        .single();
 
       if (!ativo) return;
 
       setUsuario({
         nome: profile?.nome || user.email?.split("@")[0] || "Usuário",
-        perfil: profile?perfil || "",
-        instituicao: profile.instituicao || null,
+        perfil: profile?.perfil || "",
+        instituicao: profile?.instituicao || null,
         email: user.email || "",
       });
     };
@@ -70,29 +71,24 @@ export default function DashboardLayout({
     };
   }, []);
 
-  const nomePerfil = 
-  nomesPerfis[usuario.perfil] || "Usuário da plataforma";
+  const nomePerfil = nomesPerfis[usuario.perfil] || "Usuário da plataforma";
 
-  const inicial = 
-  usuario.nome.trim().charAt(0).toUpperCase() || "U";
-
-
+  const inicial = usuario.nome.trim().charAt(0).toUpperCase() || "U";
 
   return (
     <div className="min-h-screen bg-background">
-      
-      <Sidebar 
-      aberto={menuAberto} 
-      fechar={() => setMenuAberto(false)} 
-      nome={usuario.nome}
-      perfil={nomePerfil}
+      <Sidebar
+        aberto={menuAberto}
+        fechar={() => setMenuAberto(false)}
+        nome={usuario.nome}
+        perfil={nomePerfil}
       />
 
       {/* Conteúdo */}
       <div className="lg:pl-72">
-
-        {/* Header mobile / interno */}
+        {/* Header interno */}
         <header className="sticky top-0 z-30 flex h-20 items-center justify-between border-b border-border bg-background/95 px-6 backdrop-blur">
+          {/* Lado esquerdo */}
           <div className="flex items-center gap-3">
             <button
               type="button"
@@ -112,15 +108,19 @@ export default function DashboardLayout({
             </div>
           </div>
 
-          {/* Avatar */}
+          {/* Usuário */}
           <div className="flex items-center gap-3">
             <div className="hidden text-right sm:block">
-              <p className="">
-
+              <p className="text-sm font-semibold text-foreground">
+                {usuario.nome}
               </p>
 
+              <p className="text-xs text-muted-foreground">{nomePerfil}</p>
             </div>
 
+            <div className="flex h-10 w-10 items-center justify-center rounded-full bg-primary-soft font-semibold text-primary">
+              {inicial}
+            </div>
           </div>
         </header>
 

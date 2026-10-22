@@ -15,6 +15,8 @@ import { createClient } from "@/lib/supabase/cliente";
 type SidebarProps = {
   aberto?: boolean;
   fechar?: () => void;
+  nome?: string;
+  perfil?: string;
 };
 
 const links = [
@@ -40,7 +42,12 @@ const links = [
   },
 ];
 
-export default function Sidebar({ aberto = false, fechar }: SidebarProps) {
+export default function Sidebar({
+  aberto = false,
+  fechar,
+  nome = "Usuário",
+  perfil = "Usuário da plataforma",
+}: SidebarProps) {
   const pathname = usePathname();
 
   const router = useRouter();
@@ -140,17 +147,15 @@ export default function Sidebar({ aberto = false, fechar }: SidebarProps) {
         <div className="border-t border-border p-4">
           <div className="mb-4 flex items-center gap-3 px-2">
             <div className="flex h-10 w-10 shrink-0 items-center justify-center rounded-full bg-primary-soft font-semibold text-primary">
-              A
+              {nome.trim().charAt(0).toUpperCase() || "U"}
             </div>
 
             <div className="min-w-0">
               <p className="truncate text-sm font-semibold text-foreground">
-                Usuário
+                {nome}
               </p>
 
-              <p className="truncate text-xs text-muted-foreground">
-                Participante
-              </p>
+              <p className="truncate text-xs text-muted-foreground">{perfil}</p>
             </div>
           </div>
 
