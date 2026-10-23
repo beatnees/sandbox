@@ -333,7 +333,7 @@ export default async function Home() {
               </div>
 
               <a
-                href="#"
+                href="/projetos"
                 className="font-semibold text-primary transition hover:text-accent"
               >
                 Ver todos os projetos →
