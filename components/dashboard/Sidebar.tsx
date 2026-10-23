@@ -9,6 +9,7 @@ import {
   UserRound,
   LogOut,
   X,
+  Trophy,
   type LucideIcon,
 } from "lucide-react";
 import { createClient } from "@/lib/supabase/cliente";
@@ -51,6 +52,12 @@ const links: LinkSidebar[] = [
     nome: "Projetos",
     href: "/dashboard/projetos",
     icon: FolderKanban,
+    perfisPermitidos: todosPerfis,
+  },
+  {
+    nome: "Minha jornada",
+    href: "/dashboard/gamificacao",
+    icon: Trophy,
     perfisPermitidos: todosPerfis,
   },
   {
