@@ -1,14 +1,94 @@
 "use client";
 
-import { useState, type FormEvent } from "react";
+import { useEffect, useState, type FormEvent } from "react";
 import Link from "next/link";
 import { ArrowLeft, Save } from "lucide-react";
 import { createClient } from "@/lib/supabase/cliente";
+
+type Organizacao = {
+  id: string;
+  nome: string;
+  tipo: string;
+};
 
 export default function NovoProjetoPage() {
   const [salvando, setSalvando] = useState(false);
   const [erro, setErro] = useState<string | null>(null);
   const [sucesso, setSucesso] = useState<string | null>(null);
+
+  const [organizacoes, setOrganizacoes] = useState<Organizacao[]>([]);
+  const [carregandoOrganizacoes, setCarregandoOrganizacoes] = useState(true);
+  const [erroOrganizacoes, setErroOrganizacoes] = useState<string | null>(null);
+
+  useEffect(() => {
+    let componenteAtivo = true;
+
+    async function carregarOrganizacoes() {
+      const supabase = createClient();
+
+      try {
+        const {
+          data: { user },
+          error: erroUsuario,
+        } = await supabase.auth.getUser();
+
+        if (erroUsuario || !user) {
+          throw new Error("Não foi possível identificar sua sessão.");
+        }
+
+        const { data: membros, error: erroMembros } = await supabase
+          .from("organizacao_membros")
+          .select("organizacao_id")
+          .eq("usuario_id", user.id)
+          .eq("status", "ativo");
+
+        if (erroMembros) {
+          throw erroMembros;
+        }
+
+        const idsOrganizacoes = (membros ?? []).map(
+          (membro) => membro.organizacao_id,
+        );
+
+        if (idsOrganizacoes.length === 0) {
+          if (componenteAtivo) {
+            setOrganizacoes([]);
+          }
+          return;
+        }
+
+        const { data, error: erroLista } = await supabase
+          .from("organizacoes")
+          .select("id, nome, tipo")
+          .in("id", idsOrganizacoes)
+          .order("nome");
+
+        if (erroLista) {
+          throw erroLista;
+        }
+
+        if (componenteAtivo) {
+          setOrganizacoes(data ?? []);
+        }
+      } catch {
+        if (componenteAtivo) {
+          setErroOrganizacoes(
+            "Não foi possível carregar suas organizações e equipes.",
+          );
+        }
+      } finally {
+        if (componenteAtivo) {
+          setCarregandoOrganizacoes(false);
+        }
+      }
+    }
+
+    void carregarOrganizacoes();
+
+    return () => {
+      componenteAtivo = false;
+    };
+  }, []);
 
   async function handleSubmit(event: FormEvent<HTMLFormElement>) {
     event.preventDefault();
@@ -43,12 +123,15 @@ export default function NovoProjetoPage() {
         return;
       }
 
-      const progressoInformado = Number(formData.get("progresso") ?? 0);
+      const progressoInformado = Number(formData.get("progresso"));
 
       const tags = String(formData.get("tags") ?? "")
         .split(",")
         .map((tag) => tag.trim())
         .filter(Boolean);
+
+      const organizacaoId =
+        String(formData.get("organizacao_id") ?? "") || null;
 
       const { error: erroCadastro } = await supabase.from("projetos").insert({
         titulo,
@@ -63,6 +146,7 @@ export default function NovoProjetoPage() {
         tags,
         data_inicio: String(formData.get("inicio") ?? "") || null,
         data_fim: String(formData.get("fim") ?? "") || null,
+        organizacao_id: organizacaoId,
       });
 
       if (erroCadastro) {
@@ -78,6 +162,7 @@ export default function NovoProjetoPage() {
       setSalvando(false);
     }
   }
+
   return (
     <>
       {/* Voltar */}
@@ -124,6 +209,7 @@ export default function NovoProjetoPage() {
             {sucesso}
           </div>
         )}
+
         {/* Informações principais */}
         <section className="rounded-3xl border border-border bg-card p-6 shadow-card md:p-8">
           <div>
@@ -176,7 +262,7 @@ export default function NovoProjetoPage() {
           </div>
         </section>
 
-        {/* Instituição */}
+        {/* Instituição e organização */}
         <section className="rounded-3xl border border-border bg-card p-6 shadow-card md:p-8">
           <div>
             <h2 className="text-xl font-bold text-foreground">
@@ -184,7 +270,8 @@ export default function NovoProjetoPage() {
             </h2>
 
             <p className="mt-1 text-sm text-muted-foreground">
-              Informe quem está conduzindo o projeto.
+              Informe quem está conduzindo o projeto e, se desejar, vincule-o a
+              uma organização ou equipe da plataforma.
             </p>
           </div>
 
@@ -225,6 +312,64 @@ export default function NovoProjetoPage() {
               />
             </div>
           </div>
+
+          {/* Organização ou equipe */}
+          <div className="mt-6">
+            <label
+              htmlFor="organizacao_id"
+              className="text-sm font-semibold text-foreground"
+            >
+              Organização ou equipe
+              <span className="ml-2 font-normal text-muted-foreground">
+                (opcional)
+              </span>
+            </label>
+
+            <select
+              id="organizacao_id"
+              name="organizacao_id"
+              defaultValue=""
+              disabled={carregandoOrganizacoes || !!erroOrganizacoes}
+              className="mt-2 h-12 w-full rounded-xl border border-border bg-background px-4 text-foreground outline-none transition focus:border-primary focus:ring-2 focus:ring-primary/15 disabled:cursor-not-allowed disabled:opacity-60"
+            >
+              <option value="">
+                {carregandoOrganizacoes
+                  ? "Carregando organizações..."
+                  : "Sem vínculo coletivo"}
+              </option>
+
+              {organizacoes.map((organizacao) => (
+                <option key={organizacao.id} value={organizacao.id}>
+                  {organizacao.nome} —{" "}
+                  {organizacao.tipo === "instituicao"
+                    ? "Instituição"
+                    : "Equipe"}
+                </option>
+              ))}
+            </select>
+
+            <p className="mt-2 text-xs text-muted-foreground">
+              Vincular o projeto permite contabilizá-lo nas metas coletivas da
+              organização ou equipe selecionada.
+            </p>
+
+            {erroOrganizacoes && (
+              <p role="alert" className="mt-2 text-sm text-amber-700">
+                {erroOrganizacoes} Você ainda pode cadastrar o projeto sem
+                vínculo coletivo.
+              </p>
+            )}
+
+            {!carregandoOrganizacoes &&
+              !erroOrganizacoes &&
+              organizacoes.length === 0 && (
+                <p className="mt-2 text-xs text-muted-foreground">
+                  Você ainda não participa de nenhuma organização ou equipe
+                  ativa. É possível criar ou ingressar em uma na página
+                  Organizações e equipes.
+                </p>
+              )}
+          </div>
         </section>
 
         {/* Classificação */}
@@ -261,15 +406,10 @@ export default function NovoProjetoPage() {
                 </option>
 
                 <option value="planejamento">Planejamento</option>
-
                 <option value="analise">Análise</option>
-
                 <option value="experimentacao">Experimentação</option>
-
                 <option value="evidencias">Coleta de evidências</option>
-
                 <option value="avaliacao">Avaliação</option>
-
                 <option value="concluido">Concluído</option>
               </select>
             </div>
@@ -290,11 +430,8 @@ export default function NovoProjetoPage() {
                 className="mt-2 h-12 w-full rounded-xl border border-border bg-background px-4 text-foreground outline-none transition focus:border-primary focus:ring-2 focus:ring-primary/15"
               >
                 <option value="rascunho">Rascunho</option>
-
                 <option value="em-andamento">Em andamento</option>
-
                 <option value="pausado">Pausado</option>
-
                 <option value="concluido">Concluído</option>
               </select>
             </div>
@@ -400,7 +537,7 @@ export default function NovoProjetoPage() {
           <button
             type="submit"
             disabled={salvando}
-            className="inline-flex h-12 items-center justify-center gap-2 rounded-xl bg-primary px-6 font-semibold text-primary-foreground transition hover:brightness-95"
+            className="inline-flex h-12 items-center justify-center gap-2 rounded-xl bg-primary px-6 font-semibold text-primary-foreground transition hover:brightness-95 disabled:cursor-not-allowed disabled:opacity-60"
           >
             <Save size={18} />
             {salvando ? "Salvando..." : "Salvar projeto"}
