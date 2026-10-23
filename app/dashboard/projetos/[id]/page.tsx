@@ -1,5 +1,5 @@
 import Link from "next/link";
-import { ArrowLeft } from "lucide-react";
+import { ArrowLeft, Pencil } from "lucide-react";
 import { notFound } from "next/navigation";
 import { createClient } from "@/lib/supabase/server";
 
@@ -114,15 +114,25 @@ export default async function ProjetoDetalhePage({
             </p>
           </div>
 
-          <span
-            className={`inline-flex w-fit shrink-0 rounded-full px-4 py-2 text-sm font-semibold ${
-              projeto.status === "concluido"
-                ? "bg-success-soft text-success"
-                : "bg-primary-soft text-primary"
-            }`}
-          >
-            {statusLabels[projeto.status] ?? projeto.status}
-          </span>
+          <div className="flex flex-wrap items-center gap-3">
+            <span
+              className={`inline-flex w-fit shrink-0 rounded-full px-4 py-2 text-sm font-semibold ${
+                projeto.status === "concluido"
+                  ? "bg-success-soft text-success"
+                  : "bg-primary-soft text-primary"
+              }`}
+            >
+              {statusLabels[projeto.status] ?? projeto.status}
+            </span>
+
+            <Link
+              href={`/dashboard/projetos/${projeto.id}/editar`}
+              className="inline-flex items-center gap-2 rounded-xl border border-border px-4 py-2 text-sm font-semibold text-primary transition hover:bg-primary-soft"
+            >
+              <Pencil size={16} />
+              Editar projeto
+            </Link>
+          </div>
         </div>
       </div>
 
