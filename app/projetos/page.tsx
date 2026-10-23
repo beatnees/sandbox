@@ -1,6 +1,5 @@
 import Link from "next/link";
 import { ArrowLeft, FolderKanban } from "lucide-react";
-
 import Header from "@/components/layout/Header";
 import Footer from "@/components/layout/Footer";
 import { createClient } from "@/lib/supabase/server";
@@ -103,8 +102,9 @@ export default async function ProjetosPublicosPage() {
                 );
 
                 return (
-                  <article
+                  <Link
                     key={projeto.id}
+                    href={`/projetos/${projeto.id}`}
                     className="flex flex-col rounded-3xl border border-border bg-card p-6 transition hover:-translate-y-1 hover:shadow-md"
                   >
                     <div className="flex flex-wrap items-center justify-between gap-2">
@@ -183,7 +183,7 @@ export default async function ProjetosPublicosPage() {
                         />
                       </div>
                     </div>
-                  </article>
+                  </Link>
                 );
               })}
             </div>
