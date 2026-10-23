@@ -4,6 +4,19 @@ import Footer from "@/components/layout/Footer";
 import { createClient } from "@/lib/supabase/server";
 import { ShieldCheck, TrendingUp, Lightbulb, UsersRound } from "lucide-react";
 
+type ProjetoPublico = {
+  id: string;
+  titulo: string;
+  descricao: string | null;
+  instituicao: string | null;
+  responsavel: string | null;
+  etapa: string;
+  status: string;
+  progresso: number;
+  tags: string[];
+  created_at: string;
+};
+
 export default async function Home() {
   const supabase = await createClient();
 
@@ -15,41 +28,20 @@ export default async function Home() {
 
   const formatarNumero = (valor: number | null | undefined) =>
     typeof valor === "number" ? valor.toLocaleString("pt-BR") : "—";
-  const projetos = [
-    {
-      id: 1,
-      titulo: "Tutor de IA generativa para reforço em Matemática",
-      tags: ["IA generativa", "Ensino médio"],
-      instituicao: "IFPE",
-      responsavel: "Nome do responsável",
-      etapa: "Experimentação",
-      progresso: 64,
-    },
-    {
-      id: 2,
-      titulo: "Correção assistida de redações em escala",
-      tags: ["Avaliação", "Linguagens"],
-      instituicao: "SEDUC-SP",
-      responsavel: "Nome do responsável",
-      etapa: "Avaliação",
-      progresso: 78,
-    },
-    {
-      id: 3,
-      titulo: "Navegação adaptativa por leitor de tela",
-      tags: ["Acessibilidade", "Inclusão"],
-      instituicao: "Instituto Benjamin Constant",
-      responsavel: "Nome do responsável",
-      etapa: "Coleta de evidências",
-      progresso: 45,
-    },
-  ];
+
+  const { data: dadosProjetos, error: erroProjetos } = await supabase.rpc(
+    "obter_projetos_publicos",
+  );
+
+  const projetos: ProjetoPublico[] = erroProjetos
+    ? []
+    : ((dadosProjetos ?? []) as ProjetoPublico[]);
 
   return (
     <>
       <Header />
 
-      <main className="bg-background)">
+      <main className="bg-background">
         {/* hero */}
         <section className="relative overflow-hidden bg-gradient-hero px-6 py-16 text-white md:py-24">
           {/* textura decorativa */}
