@@ -31,7 +31,7 @@ const statusLabels: Record<string, string> = {
   rascunho: "Rascunho",
   "em-andamento": "Em andamento",
   pausado: "Pausado",
-  concluido: "Co ncluído",
+  concluido: "Concluído",
 };
 
 function formatarData(data: string | null) {
