@@ -1,7 +1,83 @@
+"use client";
+
+import { useState, type FormEvent } from "react";
 import Link from "next/link";
 import { ArrowLeft, Save } from "lucide-react";
+import { createClient } from "@/lib/supabase/cliente";
 
 export default function NovoProjetoPage() {
+  const [salvando, setSalvando] = useState(false);
+  const [erro, setErro] = useState<string | null>(null);
+  const [sucesso, setSucesso] = useState<string | null>(null);
+
+  async function handleSubmit(event: FormEvent<HTMLFormElement>) {
+    event.preventDefault();
+
+    const form = event.currentTarget;
+    const formData = new FormData(form);
+
+    const titulo = String(formData.get("titulo") ?? "").trim();
+    const etapa = String(formData.get("etapa") ?? "");
+
+    if (!titulo || !etapa) {
+      setErro("Preencha o título e selecione a etapa do projeto.");
+      return;
+    }
+
+    setSalvando(true);
+    setErro(null);
+    setSucesso(null);
+
+    try {
+      const supabase = createClient();
+
+      const {
+        data: { user },
+        error: erroUsuario,
+      } = await supabase.auth.getUser();
+
+      if (erroUsuario || !user) {
+        setErro(
+          "Sua sessão expirou. Entre novamente para cadastrar um projeto.",
+        );
+        return;
+      }
+
+      const progressoInformado = Number(formData.get("progresso") ?? 0);
+
+      const tags = String(formData.get("tags") ?? "")
+        .split(",")
+        .map((tag) => tag.trim())
+        .filter(Boolean);
+
+      const { error: erroCadastro } = await supabase.from("projetos").insert({
+        titulo,
+        descricao: String(formData.get("descricao") ?? "").trim() || null,
+        instituicao: String(formData.get("instituicao") ?? "").trim() || null,
+        responsavel: String(formData.get("responsavel") ?? "").trim() || null,
+        etapa,
+        status: String(formData.get("status") ?? "em-andamento"),
+        progresso: Number.isFinite(progressoInformado)
+          ? Math.max(0, Math.min(100, Math.trunc(progressoInformado)))
+          : 0,
+        tags,
+        data_inicio: String(formData.get("inicio") ?? "") || null,
+        data_fim: String(formData.get("fim") ?? "") || null,
+      });
+
+      if (erroCadastro) {
+        setErro(`Não foi possível salvar o projeto: ${erroCadastro.message}`);
+        return;
+      }
+
+      setSucesso("Projeto cadastrado com sucesso!");
+      form.reset();
+    } catch {
+      setErro("Ocorreu um erro inesperado. Tente novamente.");
+    } finally {
+      setSalvando(false);
+    }
+  }
   return (
     <>
       {/* Voltar */}
@@ -30,7 +106,24 @@ export default function NovoProjetoPage() {
       </div>
 
       {/* Formulário */}
-      <form className="mt-10 space-y-8">
+      <form onSubmit={handleSubmit} className="mt-10 space-y-8">
+        {erro && (
+          <div
+            role="alert"
+            className="rounded-xl border border-red-200 bg-red-50 px-4 py-3 text-sm text-red-700"
+          >
+            {erro}
+          </div>
+        )}
+
+        {sucesso && (
+          <div
+            role="status"
+            className="rounded-xl border border-green-200 bg-green-50 px-4 py-3 text-sm text-green-800"
+          >
+            {sucesso}
+          </div>
+        )}
         {/* Informações principais */}
         <section className="rounded-3xl border border-border bg-card p-6 shadow-card md:p-8">
           <div>
@@ -57,6 +150,7 @@ export default function NovoProjetoPage() {
                 id="titulo"
                 name="titulo"
                 type="text"
+                required
                 placeholder="Ex.: Tutor de IA para apoio à aprendizagem"
                 className="mt-2 h-12 w-full rounded-xl border border-border bg-background px-4 text-foreground outline-none transition placeholder:text-muted-foreground/60 focus:border-primary focus:ring-2 focus:ring-primary/15"
               />
@@ -159,6 +253,7 @@ export default function NovoProjetoPage() {
                 id="etapa"
                 name="etapa"
                 defaultValue=""
+                required
                 className="mt-2 h-12 w-full rounded-xl border border-border bg-background px-4 text-foreground outline-none transition focus:border-primary focus:ring-2 focus:ring-primary/15"
               >
                 <option value="" disabled>
@@ -304,10 +399,11 @@ export default function NovoProjetoPage() {
 
           <button
             type="submit"
+            disabled={salvando}
             className="inline-flex h-12 items-center justify-center gap-2 rounded-xl bg-primary px-6 font-semibold text-primary-foreground transition hover:brightness-95"
           >
             <Save size={18} />
-            Salvar projeto
+            {salvando ? "Salvando..." : "Salvar projeto"}
           </button>
         </div>
       </form>
