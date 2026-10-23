@@ -21,7 +21,9 @@ export default function LoginModal({
   const [email, setEmail] = useState("");
   const [senha, setSenha] = useState("");
   const [erro, setErro] = useState("");
+  const [mensagem, setMensagem] = useState("");
   const [carregando, setCarregando] = useState(false);
+  const [enviandoRecuperacao, setEnviandoRecuperacao] = useState(false);
 
   const router = useRouter();
 
@@ -36,7 +38,6 @@ export default function LoginModal({
 
     document.addEventListener("keydown", fecharComEsc);
 
-    // impede a página de rolar atrás do modal
     const overflowAnterior = document.body.style.overflow;
     document.body.style.overflow = "hidden";
 
@@ -50,6 +51,7 @@ export default function LoginModal({
     event.preventDefault();
 
     setErro("");
+    setMensagem("");
     setCarregando(true);
 
     const supabase = createClient();
@@ -64,8 +66,6 @@ export default function LoginModal({
       setCarregando(false);
       return;
     }
-
-    // confere se o usuário possui perfil na plataforma
 
     const { data: profile, error: profileError } = await supabase
       .from("profiles")
@@ -83,13 +83,48 @@ export default function LoginModal({
     }
 
     setCarregando(false);
-
     setAberto(false);
     router.push("/dashboard");
     router.refresh();
   };
 
+  const recuperarSenha = async () => {
+    setErro("");
+    setMensagem("");
+
+    if (!email.trim()) {
+      setErro(
+        "Digite seu e-mail institucional antes de solicitar a recuperação.",
+      );
+      return;
+    }
+
+    setEnviandoRecuperacao(true);
+
+    const supabase = createClient();
+
+    const { error } = await supabase.auth.resetPasswordForEmail(email.trim(), {
+      redirectTo: `${window.location.origin}/auth/callback`,
+    });
+
+    if (error) {
+      setErro(
+        "Não foi possível enviar o e-mail. Confira o endereço e tente novamente.",
+      );
+      setEnviandoRecuperacao(false);
+      return;
+    }
+
+    setMensagem(
+      "Se houver uma conta associada a esse e-mail, você receberá um link para definir uma nova senha. Confira também a caixa de spam.",
+    );
+
+    setEnviandoRecuperacao(false);
+  };
+
   const abrirModal = () => {
+    setErro("");
+    setMensagem("");
     onOpen?.();
     setAberto(true);
   };
@@ -107,7 +142,6 @@ export default function LoginModal({
             className="relative max-h-[calc(100vh-3rem)] w-full max-w-xl overflow-y-auto rounded-3xl border border-border bg-card p-6 shadow-2xl sm:p-8"
             onMouseDown={(event) => event.stopPropagation()}
           >
-            {/* Fechar */}
             <button
               type="button"
               onClick={() => setAberto(false)}
@@ -117,7 +151,6 @@ export default function LoginModal({
               <X size={20} />
             </button>
 
-            {/* Cabeçalho */}
             <div className="pr-10">
               <span className="text-sm font-semibold uppercase tracking-[0.18em] text-primary">
                 Acesso à plataforma
@@ -131,12 +164,12 @@ export default function LoginModal({
               </h2>
 
               <p className="mt-2 text-sm leading-relaxed text-muted-foreground">
-                Informe suas credenciais e selecione o seu perfil de acesso.
+                Informe suas credenciais. Seu perfil de acesso será identificado
+                automaticamente após o login.
               </p>
             </div>
 
             <form onSubmit={entrar} className="mt-8 space-y-6">
-              {/* E-mail */}
               <div>
                 <label
                   htmlFor="login-email"
@@ -156,7 +189,11 @@ export default function LoginModal({
                     name="email"
                     type="email"
                     value={email}
-                    onChange={(event) => setEmail(event.target.value)}
+                    onChange={(event) => {
+                      setEmail(event.target.value);
+                      setErro("");
+                      setMensagem("");
+                    }}
                     placeholder="nome@instituicao.br"
                     autoComplete="email"
                     required
@@ -165,7 +202,6 @@ export default function LoginModal({
                 </div>
               </div>
 
-              {/* Senha */}
               <div>
                 <div className="flex items-center justify-between gap-4">
                   <label
@@ -177,9 +213,13 @@ export default function LoginModal({
 
                   <button
                     type="button"
-                    className="text-xs font-medium text-primary hover:underline"
+                    onClick={recuperarSenha}
+                    disabled={enviandoRecuperacao}
+                    className="text-xs font-medium text-primary hover:underline disabled:opacity-50"
                   >
-                    Esqueci minha senha
+                    {enviandoRecuperacao
+                      ? "Enviando..."
+                      : "Esqueci minha senha"}
                   </button>
                 </div>
 
@@ -203,7 +243,6 @@ export default function LoginModal({
                 </div>
               </div>
 
-              {/* Perfil */}
               <div className="rounded-xl bg-muted px-4 py-3">
                 <p className="text-sm leading-relaxed text-muted-foreground">
                   Seu perfil de acesso será identificado automaticamente após o
@@ -212,16 +251,29 @@ export default function LoginModal({
               </div>
 
               {erro && (
-                <div className="rounded-xl bg-destructive-soft px-4 py-3">
+                <div
+                  role="alert"
+                  className="rounded-xl bg-destructive-soft px-4 py-3"
+                >
                   <p className="text-sm font-medium text-destructive">{erro}</p>
                 </div>
               )}
 
-              {/* Entrar */}
+              {mensagem && (
+                <div
+                  role="status"
+                  className="rounded-xl border border-border bg-muted px-4 py-3"
+                >
+                  <p className="text-sm leading-relaxed text-foreground">
+                    {mensagem}
+                  </p>
+                </div>
+              )}
+
               <button
                 type="submit"
                 disabled={carregando}
-                className="h-12 w-full rounded-xl bg-primary font-semibold text-primary-foreground transition hover:brightness-95"
+                className="h-12 w-full rounded-xl bg-primary font-semibold text-primary-foreground transition hover:brightness-95 disabled:opacity-50"
               >
                 {carregando ? "Entrando..." : "Entrar"}
               </button>
