@@ -32,11 +32,28 @@ const statusLabels: Record<string, string> = {
 export default async function ProjetosPage() {
   const supabase = await createClient();
 
+  const {
+    data: { user },
+    error: erroUsuario,
+  } = await supabase.auth.getUser();
+
+  if (erroUsuario || !user) {
+    return (
+      <div
+        role="alert"
+        className="rounded-xl border border-border bg-card p-6 text-sm text-muted-foreground"
+      >
+        Não foi possível identificar sua sessão. Entre novamente no sistema.
+      </div>
+    );
+  }
+
   const { data, error } = await supabase
     .from("projetos")
     .select(
       "id, titulo, instituicao, responsavel, etapa, status, tags, progresso, created_at",
     )
+    .eq("criado_por", user.id)
     .order("created_at", { ascending: false });
 
   const projetos = (data ?? []) as Projeto[];
