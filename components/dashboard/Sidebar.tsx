@@ -12,6 +12,7 @@ import {
   Trophy,
   Building2,
   Target,
+  Users,
   type LucideIcon,
 } from "lucide-react";
 import { createClient } from "@/lib/supabase/cliente";
@@ -84,6 +85,12 @@ const links: LinkSidebar[] = [
       "especialista",
       "administrador",
     ],
+  },
+  {
+    nome: "Usuários",
+    href: "/dashboard/usuarios",
+    icon: Users,
+    perfisPermitidos: ["gestor", "administrador"],
   },
   {
     nome: "Perfil",
