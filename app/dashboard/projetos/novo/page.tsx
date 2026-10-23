@@ -146,7 +146,8 @@ export default function NovoProjetoPage() {
         tags,
         data_inicio: String(formData.get("inicio") ?? "") || null,
         data_fim: String(formData.get("fim") ?? "") || null,
-        organizacao_id: organizacaoId,
+        organizacao_id: organizacaoId || null,
+        publico: formData.get("publico") === "on",
       });
 
       if (erroCadastro) {
@@ -533,6 +534,21 @@ export default function NovoProjetoPage() {
           >
             Cancelar
           </Link>
+
+          <div className="rounded-lg border border-gray-200 p-4">
+            <label className="flex cursor-pointer items-start gap-3">
+              <input type="checkbox" name="publico" className="mt-1 h-4 w-4" />
+              <span>
+                <span className="block font-medium">
+                  Exibir este projeto na página inicial pública
+                </span>
+                <span className="mt-1 block text-sm text-gray-500">
+                  Ao marcar esta opção, os dados do projeto poderão ser vistos
+                  por visitantes sem login.
+                </span>
+              </span>
+            </label>
+          </div>
 
           <button
             type="submit"
