@@ -3,7 +3,12 @@ import type { ReactNode } from "react";
 
 import { createClient } from "@/lib/supabase/server";
 
-const perfisPermitidos = ["gestor", "especialista", "administrador"];
+const perfisPermitidos = [
+  "participante",
+  "gestor",
+  "especialista",
+  "administrador",
+];
 
 export default async function EvidenciasLayout({
   children,

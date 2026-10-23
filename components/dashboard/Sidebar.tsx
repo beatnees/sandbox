@@ -78,7 +78,12 @@ const links: LinkSidebar[] = [
     nome: "Evidências",
     href: "/dashboard/evidencias",
     icon: FileCheck2,
-    perfisPermitidos: ["gestor", "especialista", "administrador"],
+    perfisPermitidos: [
+      "participante",
+      "gestor",
+      "especialista",
+      "administrador",
+    ],
   },
   {
     nome: "Perfil",
