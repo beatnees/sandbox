@@ -10,6 +10,7 @@ import {
   LogOut,
   X,
   Trophy,
+  Building2,
   type LucideIcon,
 } from "lucide-react";
 import { createClient } from "@/lib/supabase/cliente";
@@ -58,6 +59,12 @@ const links: LinkSidebar[] = [
     nome: "Minha jornada",
     href: "/dashboard/gamificacao",
     icon: Trophy,
+    perfisPermitidos: todosPerfis,
+  },
+  {
+    nome: "Organizações e equipes",
+    href: "/dashboard/organizacoes",
+    icon: Building2,
     perfisPermitidos: todosPerfis,
   },
   {
