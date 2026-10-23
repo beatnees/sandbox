@@ -9,6 +9,7 @@ import {
   UserRound,
   LogOut,
   X,
+  type LucideIcon,
 } from "lucide-react";
 import { createClient } from "@/lib/supabase/cliente";
 
@@ -19,28 +20,63 @@ type SidebarProps = {
   perfil?: string;
 };
 
-const links = [
+type PerfilCodigo =
+  | "participante"
+  | "gestor"
+  | "especialista"
+  | "administrador";
+
+type LinkSidebar = {
+  nome: string;
+  href: string;
+  icon: LucideIcon;
+  perfisPermitidos: PerfilCodigo[];
+};
+
+const todosPerfis: PerfilCodigo[] = [
+  "participante",
+  "gestor",
+  "especialista",
+  "administrador",
+];
+
+const links: LinkSidebar[] = [
   {
     nome: "Visão geral",
     href: "/dashboard",
     icon: LayoutDashboard,
+    perfisPermitidos: todosPerfis,
   },
   {
     nome: "Projetos",
     href: "/dashboard/projetos",
     icon: FolderKanban,
+    perfisPermitidos: todosPerfis,
   },
   {
     nome: "Evidências",
     href: "/dashboard/evidencias",
     icon: FileCheck2,
+    perfisPermitidos: ["gestor", "especialista", "administrador"],
   },
   {
     nome: "Perfil",
     href: "/dashboard/perfil",
     icon: UserRound,
+    perfisPermitidos: todosPerfis,
   },
 ];
+
+function obterCodigoPerfil(perfil: string): PerfilCodigo | null {
+  const valor = perfil.trim().toLocaleLowerCase("pt-BR");
+
+  if (valor.includes("administrador")) return "administrador";
+  if (valor.includes("especialista")) return "especialista";
+  if (valor.includes("gestor")) return "gestor";
+  if (valor.includes("participante")) return "participante";
+
+  return null;
+}
 
 export default function Sidebar({
   aberto = false,
@@ -49,13 +85,28 @@ export default function Sidebar({
   perfil = "Usuário da plataforma",
 }: SidebarProps) {
   const pathname = usePathname();
-
   const router = useRouter();
+
+  const perfilCodigo = obterCodigoPerfil(perfil);
+
+  const linksVisiveis = links.filter((item) => {
+    // Se o perfil ainda não foi identificado, não exibe Evidências.
+    if (!perfilCodigo) {
+      return item.href !== "/dashboard/evidencias";
+    }
+
+    return item.perfisPermitidos.includes(perfilCodigo);
+  });
 
   const sair = async () => {
     const supabase = createClient();
 
-    await supabase.auth.signOut();
+    const { error } = await supabase.auth.signOut();
+
+    if (error) {
+      console.error("Erro ao sair:", error.message);
+      return;
+    }
 
     router.replace("/");
     router.refresh();
@@ -78,22 +129,23 @@ export default function Sidebar({
           border-r border-border
           bg-card
           transition-transform duration-300
-
           lg:translate-x-0
-
           ${aberto ? "translate-x-0" : "-translate-x-full"}
         `}
       >
         {/* Logo */}
         <div className="flex h-20 items-center justify-between border-b border-border px-6">
-          <Link href="/dashboard" className="flex items-center gap-3">
+          <Link
+            href="/dashboard"
+            className="flex items-center gap-3"
+            onClick={fechar}
+          >
             <div className="flex h-10 w-10 items-center justify-center rounded-xl bg-primary font-bold text-primary-foreground">
               S
             </div>
 
             <div>
               <p className="font-display font-bold text-foreground">Sandbox</p>
-
               <p className="text-xs text-muted-foreground">IA na Educação</p>
             </div>
           </Link>
@@ -109,9 +161,9 @@ export default function Sidebar({
           </button>
         </div>
 
-        {/* Navegação */}
+        {/* Navegação conforme o perfil */}
         <nav className="flex-1 space-y-1 px-4 py-6">
-          {links.map((item) => {
+          {linksVisiveis.map((item) => {
             const Icon = item.icon;
 
             const ativo =
@@ -127,7 +179,6 @@ export default function Sidebar({
                 className={`
                   flex items-center gap-3 rounded-xl px-4 py-3
                   text-sm font-medium transition
-
                   ${
                     ativo
                       ? "bg-primary-soft text-primary"
@@ -136,7 +187,6 @@ export default function Sidebar({
                 `}
               >
                 <Icon size={20} />
-
                 {item.nome}
               </Link>
             );
