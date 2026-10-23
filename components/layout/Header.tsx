@@ -97,14 +97,14 @@ export default function Header() {
               Sobre
             </a>
             <a
-              href="#"
+              href="#sobre"
               onClick={() => setMenuOpen(false)}
               className="rounded-xl px-4 py-3 font-medium text-muted-foreground transition hover:bg-primary-soft hover:text-primary"
             >
               Como funciona
             </a>
             <a
-              href="#"
+              href="#projetos"
               onClick={() => setMenuOpen(false)}
               className="rounded-xl px-4 py-3 font-medium text-muted-foreground transition hover:bg-primary-soft hover:text-primary"
             >
