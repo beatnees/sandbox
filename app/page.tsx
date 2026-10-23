@@ -1,9 +1,20 @@
 import Header from "@/components/layout/Header";
 import LoginModal from "@/components/auth/LoginModal";
 import Footer from "@/components/layout/Footer";
+import { createClient } from "@/lib/supabase/server";
 import { ShieldCheck, TrendingUp, Lightbulb, UsersRound } from "lucide-react";
 
-export default function Home() {
+export default async function Home() {
+  const supabase = await createClient();
+
+  const { data: dadosIndicadores, error: erroIndicadores } = await supabase.rpc(
+    "obter_indicadores_publicos",
+  );
+
+  const indicadores = !erroIndicadores ? dadosIndicadores?.[0] : null;
+
+  const formatarNumero = (valor: number | null | undefined) =>
+    typeof valor === "number" ? valor.toLocaleString("pt-BR") : "—";
   const projetos = [
     {
       id: 1,
@@ -170,21 +181,21 @@ export default function Home() {
             <div className="mt-16 grid grid-cols-2 gap-8 border-t border-white/20 pt-10 md:grid-cols-4 lg:mt-20">
               <div>
                 <div className="text-3xl font-bold text-white md:text-4xl">
-                  —
+                  {formatarNumero(indicadores?.projetos_ativos)}
                 </div>
                 <p className="mt-2 text-sm text-white/70">projetos ativos</p>
               </div>
 
               <div>
                 <div className="text-3xl font-bold text-white md:text-4xl">
-                  —
+                  {formatarNumero(indicadores?.instituicoes)}
                 </div>
                 <p className="mt-2 text-sm text-white/70">instituições</p>
               </div>
 
               <div>
                 <div className="text-3xl font-bold text-white md:text-4xl">
-                  —
+                  {formatarNumero(indicadores?.evidencias_registradas)}
                 </div>
                 <p className="mt-2 text-sm text-white/70">
                   evidências registradas
@@ -193,7 +204,7 @@ export default function Home() {
 
               <div>
                 <div className="text-3xl font-bold text-white md:text-4xl">
-                  —
+                  {formatarNumero(indicadores?.participantes)}
                 </div>
                 <p className="mt-2 text-sm text-white/70">participantes</p>
               </div>
