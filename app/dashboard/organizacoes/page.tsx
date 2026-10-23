@@ -1,6 +1,6 @@
 "use client";
 
-import { useEffect, useState, type FormEvent } from "react";
+import { useCallback, useEffect, useState, type FormEvent } from "react";
 import { Building2, UsersRound, Plus, Copy } from "lucide-react";
 import { createClient } from "@/lib/supabase/cliente";
 
@@ -12,6 +12,14 @@ type Organizacao = {
   codigo_convite: string;
 };
 
+type MembroOrganizacao = {
+  organizacao_id: string;
+  usuario_id: string;
+  papel: "administrador" | "gestor" | "membro";
+  nome: string;
+  instituicao: string | null;
+};
+
 type ResultadoConvite = {
   organizacao_id: string;
   nome: string;
@@ -20,6 +28,9 @@ type ResultadoConvite = {
 
 export default function OrganizacoesPage() {
   const [organizacoes, setOrganizacoes] = useState<Organizacao[]>([]);
+  const [membrosPorOrganizacao, setMembrosPorOrganizacao] = useState<
+    Record<string, MembroOrganizacao[]>
+  >({});
   const [nome, setNome] = useState("");
   const [tipo, setTipo] = useState<"instituicao" | "equipe">("instituicao");
   const [codigoConvite, setCodigoConvite] = useState("");
@@ -30,10 +41,97 @@ export default function OrganizacoesPage() {
   const [erro, setErro] = useState("");
   const [sucesso, setSucesso] = useState("");
 
+  const carregarMembros = useCallback(async (organizacaoIds: string[]) => {
+    if (organizacaoIds.length === 0) {
+      setMembrosPorOrganizacao({});
+      return;
+    }
+
+    const supabase = createClient();
+
+    const { data: membros, error: erroMembros } = await supabase
+      .from("organizacao_membros")
+      .select("organizacao_id, usuario_id, papel")
+      .eq("status", "ativo")
+      .in("organizacao_id", organizacaoIds);
+
+    if (erroMembros) {
+      setErro("Não foi possível carregar os membros. " + erroMembros.message);
+      setMembrosPorOrganizacao({});
+      return;
+    }
+
+    const membrosEncontrados = membros ?? [];
+    const usuarioIds = [
+      ...new Set(membrosEncontrados.map((membro) => membro.usuario_id)),
+    ];
+
+    if (usuarioIds.length === 0) {
+      setMembrosPorOrganizacao({});
+      return;
+    }
+
+    const { data: perfis, error: erroPerfis } = await supabase
+      .from("profiles")
+      .select("id, nome, instituicao")
+      .in("id", usuarioIds);
+
+    if (erroPerfis) {
+      setErro("Não foi possível carregar os perfis dos membros.");
+    }
+
+    const perfisPorId = new Map(
+      (perfis ?? []).map((perfil) => [perfil.id, perfil]),
+    );
+
+    const agrupados: Record<string, MembroOrganizacao[]> = {};
+
+    for (const membro of membrosEncontrados) {
+      const perfil = perfisPorId.get(membro.usuario_id);
+
+      const membroFormatado: MembroOrganizacao = {
+        organizacao_id: membro.organizacao_id,
+        usuario_id: membro.usuario_id,
+        papel: membro.papel as MembroOrganizacao["papel"],
+        nome: perfil?.nome ?? "Usuário",
+        instituicao: perfil?.instituicao ?? null,
+      };
+
+      if (!agrupados[membro.organizacao_id]) {
+        agrupados[membro.organizacao_id] = [];
+      }
+
+      agrupados[membro.organizacao_id].push(membroFormatado);
+    }
+
+    setMembrosPorOrganizacao(agrupados);
+  }, []);
+
+  const carregarOrganizacoes = useCallback(async () => {
+    const supabase = createClient();
+
+    const { data, error } = await supabase
+      .from("organizacoes")
+      .select("id, nome, tipo, created_at, codigo_convite")
+      .order("created_at", { ascending: false });
+
+    if (error) {
+      setErro("Não foi possível carregar as organizações. " + error.message);
+      setCarregando(false);
+      return;
+    }
+
+    const lista = (data ?? []) as Organizacao[];
+
+    setOrganizacoes(lista);
+    await carregarMembros(lista.map((organizacao) => organizacao.id));
+    setCarregando(false);
+  }, [carregarMembros]);
+
   useEffect(() => {
     let cancelado = false;
 
-    async function carregarOrganizacoes() {
+    async function carregarInicialmente() {
       const supabase = createClient();
 
       const { data, error } = await supabase
@@ -45,19 +143,27 @@ export default function OrganizacoesPage() {
 
       if (error) {
         setErro("Não foi possível carregar as organizações. " + error.message);
-      } else {
-        setOrganizacoes((data ?? []) as Organizacao[]);
+        setCarregando(false);
+        return;
       }
 
-      setCarregando(false);
+      const lista = (data ?? []) as Organizacao[];
+
+      setOrganizacoes(lista);
+
+      await carregarMembros(lista.map((organizacao) => organizacao.id));
+
+      if (!cancelado) {
+        setCarregando(false);
+      }
     }
 
-    void carregarOrganizacoes();
+    void carregarInicialmente();
 
     return () => {
       cancelado = true;
     };
-  }, []);
+  }, [carregarMembros]);
 
   async function criarOrganizacao(event: FormEvent<HTMLFormElement>) {
     event.preventDefault();
@@ -87,22 +193,18 @@ export default function OrganizacoesPage() {
       return;
     }
 
-    const { data, error } = await supabase
-      .from("organizacoes")
-      .insert({
-        nome: nome.trim(),
-        tipo,
-        criado_por: user.id,
-      })
-      .select("id, nome, tipo, created_at, codigo_convite")
-      .single();
+    const { error } = await supabase.from("organizacoes").insert({
+      nome: nome.trim(),
+      tipo,
+      criado_por: user.id,
+    });
 
     if (error) {
       setErro("Não foi possível criar a organização. " + error.message);
-    } else if (data) {
-      setOrganizacoes((atuais) => [data as Organizacao, ...atuais]);
+    } else {
       setNome("");
       setTipo("instituicao");
+      await carregarOrganizacoes();
       setSucesso("Organização criada com sucesso!");
     }
 
@@ -161,25 +263,23 @@ export default function OrganizacoesPage() {
       return;
     }
 
-    const { data: lista, error: erroLista } = await supabase
-      .from("organizacoes")
-      .select("id, nome, tipo, created_at, codigo_convite")
-      .order("created_at", { ascending: false });
-
     setCodigoConvite("");
-
-    if (erroLista) {
-      setErro(
-        "Você entrou na organização, mas não foi possível atualizar a lista. Recarregue a página.",
-      );
-    } else {
-      setOrganizacoes((lista ?? []) as Organizacao[]);
-      setSucesso(
-        `Você entrou na organização "${organizacaoEncontrada.nome}" com sucesso!`,
-      );
-    }
-
+    await carregarOrganizacoes();
+    setSucesso(
+      `Você entrou na organização "${organizacaoEncontrada.nome}" com sucesso!`,
+    );
     setEntrando(false);
+  }
+
+  function nomeDoPapel(papel: MembroOrganizacao["papel"]) {
+    switch (papel) {
+      case "administrador":
+        return "Administrador";
+      case "gestor":
+        return "Gestor";
+      default:
+        return "Membro";
+    }
   }
 
   return (
@@ -337,6 +437,8 @@ export default function OrganizacoesPage() {
               const Icon =
                 organizacao.tipo === "equipe" ? UsersRound : Building2;
 
+              const membros = membrosPorOrganizacao[organizacao.id] ?? [];
+
               return (
                 <article
                   key={organizacao.id}
@@ -393,14 +495,53 @@ export default function OrganizacoesPage() {
                         aria-label={`Copiar código de convite de ${organizacao.nome}`}
                       >
                         <Copy size={16} />
-                        {codigoCopiado === organizacao.codigo_convite}
+                        {codigoCopiado === organizacao.codigo_convite
+                          ? "Copiado!"
+                          : "Copiar"}
                       </button>
                     </div>
 
                     <p className="mt-2 text-xs text-muted-foreground">
-                      Compartilhe este código apenas com quem deve participar
-                      desta organização.
+                      Compartilhe este código com quem deve participar desta
+                      organização.
                     </p>
+                  </div>
+
+                  <div className="mt-5 border-t border-border pt-4">
+                    <h4 className="font-semibold text-foreground">
+                      Membros ({membros.length})
+                    </h4>
+
+                    {membros.length === 0 ? (
+                      <p className="mt-3 text-sm text-muted-foreground">
+                        Nenhum membro ativo encontrado.
+                      </p>
+                    ) : (
+                      <ul className="mt-3 space-y-3">
+                        {membros.map((membro) => (
+                          <li
+                            key={membro.usuario_id}
+                            className="flex items-center justify-between gap-3 rounded-xl bg-muted/40 p-3"
+                          >
+                            <div className="min-w-0">
+                              <p className="truncate text-sm font-medium text-foreground">
+                                {membro.nome}
+                              </p>
+
+                              {membro.instituicao && (
+                                <p className="mt-1 truncate text-xs text-muted-foreground">
+                                  {membro.instituicao}
+                                </p>
+                              )}
+                            </div>
+
+                            <span className="shrink-0 rounded-full border border-border px-2.5 py-1 text-xs text-muted-foreground">
+                              {nomeDoPapel(membro.papel)}
+                            </span>
+                          </li>
+                        ))}
+                      </ul>
+                    )}
                   </div>
                 </article>
               );
