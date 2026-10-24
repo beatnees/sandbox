@@ -101,7 +101,7 @@ export async function POST(request: NextRequest) {
 
   const { data: convite, error: erroConvite } =
     await admin.auth.admin.inviteUserByEmail(email, {
-      redirectTo: `${request.nextUrl.origin}/auth/callback`,
+      redirectTo: `${request.nextUrl.origin}/auth/confirm`,
       data: {
         nome,
         instituicao: instituicao || null,
