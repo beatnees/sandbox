@@ -1,8 +1,10 @@
 import Header from "@/components/layout/Header";
 import LoginModal from "@/components/auth/LoginModal";
 import Footer from "@/components/layout/Footer";
+import MapaSandbox from "@/components/home/MapaSandbox";
 import { createClient } from "@/lib/supabase/server";
 import { ShieldCheck, TrendingUp, Lightbulb, UsersRound } from "lucide-react";
+import Link from "next/link";
 
 type ProjetoPublico = {
   id: string;
@@ -71,27 +73,39 @@ export default async function Home() {
 
                 {/* Título */}
                 <h1 className="mt-8 max-w-3xl text-4xl font-bold leading-[1.05] tracking-tight text-white sm:text-5xl md:text-6xl lg:text-7xl">
-                  Um espaço para experimentar o futuro da educação.
+                  Sandbox de IA: testar com supervisão para decidir com
+                  evidências
                 </h1>
 
                 {/* Descrição */}
                 <p className="mt-7 max-w-2xl text-base leading-relaxed text-white/80 sm:text-lg md:text-xl">
-                  Ambiente controlado para testar, documentar e avaliar o uso de
-                  Inteligência Artificial em contextos educacionais reais.
+                  O Sandbox de IA na Educação é uma iniciativa construída pelo
+                  NEES/UFAL a partir da experiência com o MEC. Seu objetivo é
+                  testar soluções de Inteligência Artificial sob supervisão,
+                  documentar evidências e apoiar decisões responsáveis sobre seu
+                  uso na educação.
                 </p>
 
                 {/* Botões */}
-                <div className="mt-10 flex flex-col gap-4 sm:flex-row">
-                  <LoginModal
-                    label="Acessar plataforma →"
-                    className="rounded-2xl bg-white px-7 py-4 font-semibold text-primary shadow-lg transition hover:-translate-y-1 hover:shadow-xl"
-                  />
-                  <a
-                    href="#sobre"
-                    className="rounded-2xl border border-white/30 bg-white/10 px-7 py-4 text-center font-semibold text-white backdrop-blur-sm transition hover:bg-white/20"
-                  >
-                    Conheça o Sandbox
-                  </a>
+                <div className="mt-10">
+                  <div className="flex flex-col gap-3 sm:flex-row sm:flex-wrap">
+                    <a
+                      href="/o-que-e"
+                      className="inline-flex items-center justify-center rounded-xl bg-white px-6 py-3.5 text-center font-semibold text-primary shadow-lg transition hover:-translate-y-0.5 hover:shadow-xl"
+                    >
+                      Entenda o que é
+                      <span className="ml-2" aria-hidden="true">
+                        →
+                      </span>
+                    </a>
+
+                    <a
+                      href="/ciclo"
+                      className="inline-flex items-center justify-center rounded-xl border border-white/40 px-6 py-3.5 text-center font-semibold text-white transition hover:bg-white/10"
+                    >
+                      Veja o ciclo de testagem
+                    </a>
+                  </div>
                 </div>
               </div>
 
@@ -161,10 +175,20 @@ export default async function Home() {
                     </div>
                   </div>
 
-                  {/* Botão interno */}
-                  <button className="mt-8 w-full rounded-2xl bg-primary px-6 py-4 font-semibold text-primary-foreground transition hover:brightness-95">
-                    Conheça a plataforma
-                  </button>
+                  {/* Botão de acesso à plataforma */}
+                  <LoginModal
+                    label="Acessar plataforma →"
+                    className="mt-8 w-full rounded-2xl bg-primary px-6 py-4 font-semibold text-primary-foreground transition hover:brightness-95"
+                  />
+
+                  {/* Contato com o NEES */}
+                  <a
+                    href="/sobre"
+                    className="mt-3 flex w-full items-center justify-center gap-2 rounded-2xl border border-border px-6 py-4 text-center font-semibold text-foreground transition hover:bg-muted"
+                  >
+                    Fale com o NEES
+                    <span aria-hidden="true">→</span>
+                  </a>
                 </div>
               </div>
             </div>
@@ -203,6 +227,8 @@ export default async function Home() {
             </div>
           </div>
         </section>
+
+        <MapaSandbox />
 
         {/* SOBRE */}
         <section id="sobre" className="bg-background px-6 py-20 md:py-28">
@@ -332,12 +358,12 @@ export default async function Home() {
                 </p>
               </div>
 
-              <a
+              <Link
                 href="/projetos"
                 className="font-semibold text-primary transition hover:text-accent"
               >
                 Ver todos os projetos →
-              </a>
+              </Link>
             </div>
 
             {/* Cards */}
