@@ -230,7 +230,7 @@ export default async function Home() {
 
         <MapaSandbox />
 
-        {/* SOBRE */}
+        {/* sobre */}
         <section id="sobre" className="bg-background px-6 py-20 md:py-28">
           <div className="mx-auto max-w-7xl">
             {/* cabeçalho */}
@@ -244,9 +244,12 @@ export default async function Home() {
               </h2>
 
               <p className="mt-6 text-lg leading-relaxed text-muted-foreground">
-                O Sandbox é um espaço colaborativo para desenvolver, testar e
-                acompanhar soluções de Inteligência Artificial que podem
-                transformar a educação.
+                O Sandbox de IA do NEES/UFAL utiliza uma metodologia construída
+                a partir da experiência com o MEC para avaliar soluções de
+                Inteligência Artificial em um ambiente delimitado e
+                supervisionado. O objetivo é produzir evidências que apoiem
+                decisões sobre ampliar, corrigir, restringir ou encerrar seu uso
+                em políticas públicas.
               </p>
             </div>
           </div>
