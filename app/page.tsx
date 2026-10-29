@@ -3,7 +3,6 @@ import LoginModal from "@/components/auth/LoginModal";
 import Footer from "@/components/layout/Footer";
 import MapaSandbox from "@/components/home/MapaSandbox";
 import { createClient } from "@/lib/supabase/server";
-import { ShieldCheck, TrendingUp, Lightbulb, UsersRound } from "lucide-react";
 import Link from "next/link";
 
 type ProjetoPublico = {
@@ -251,92 +250,6 @@ export default async function Home() {
                 decisões sobre ampliar, corrigir, restringir ou encerrar seu uso
                 em políticas públicas.
               </p>
-            </div>
-          </div>
-        </section>
-
-        {/* como funciona */}
-        <section id="como-funciona" className="bg-surface px-6 py-20 md:py-28">
-          <div className="mx-auto max-w-7xl">
-            {/* cabeçalho */}
-            <div className="mx-auto max-w-3xl text-center">
-              <span className="text-sm font-semibold uppercase tracking-[0.18em] text-primary">
-                Como funciona
-              </span>
-
-              <h2 className="mt-4 text-3xl font-bold tracking-tight text-foreground md:text-5xl">
-                Pilares para inovação responsável.
-              </h2>
-              <p className="mt-6 text-lg leading-relaxed text-muted-foreground">
-                O Sandbox organiza a experimentação em etapas claras, garantindo
-                que cada inovação seja testada cocm segurança, ética e
-                colaboração.
-              </p>
-            </div>
-
-            {/* pilares */}
-            <div className="mt-16 grid gap-6 md:grid-cols-2 xl:grid-cols-4">
-              {/* pilar 1 */}
-              <div className="relative rounded-3xl border border-border bg-background p-8 shadow-sm transition hover:translate-y-1 hover:shadow-lg">
-                <div className="flex h-12 w-12 items-center justify-center rounded-2xl bg-primary-soft text-primary">
-                  <ShieldCheck size={24} strokeWidth={2} />
-                </div>
-
-                <h3 className="mt-6 text-xl font-bold text-foreground">
-                  Governança e proteção de dados
-                </h3>
-                <p className="mt-3 leading-relaxed text-muted-foreground">
-                  A proposta é submetida com informações sobre a solução,
-                  objetivos, público e contexto.
-                </p>
-              </div>
-
-              {/* pilar 2 */}
-              <div className="relative rounded-3xl border border-border bg-background p-8 shadow-sm transition hover:translate-y-1 hover:shadow-lg">
-                <div className="flex h-12 w-12 items-center justify-center rounded-2xl bg-primary-soft text-primary">
-                  <UsersRound size={24} strokeWidth={2} />
-                </div>
-
-                <h3 className="mt-6 text-xl font-bold text-foreground">
-                  Colaboração institucional
-                </h3>
-                <p className="mt-3 leading-relaxed text-muted-foreground">
-                  A proposta é submetida com informações sobre a solução,
-                  objetivos, público e contexto.
-                </p>
-              </div>
-
-              {/* pilar 3 */}
-
-              <div className="relative rounded-3xl border border-border bg-background p-8 shadow-sm transition hover:translate-y-1 hover:shadow-lg">
-                <div className="flex h-12 w-12 items-center justify-center rounded-2xl bg-primary-soft text-primary">
-                  <TrendingUp size={24} strokeWidth={2} />
-                </div>
-
-                <h3 className="mt-6 text-xl font-bold text-foreground">
-                  Evidências para política pública
-                </h3>
-                <p className="mt-3 leading-relaxed text-muted-foreground">
-                  A proposta é submetida com informações sobre a solução,
-                  objetivos, público e contexto.
-                </p>
-              </div>
-
-              {/* pilar 4 */}
-
-              <div className="relative rounded-3xl border border-border bg-background p-8 shadow-sm transition hover:translate-y-1 hover:shadow-lg">
-                <div className="flex h-12 w-12 items-center justify-center rounded-2xl bg-primary-soft text-primary">
-                  <Lightbulb size={24} strokeWidth={2} />
-                </div>
-
-                <h3 className="mt-6 text-xl font-bold text-foreground">
-                  Inovação com supervisão humana
-                </h3>
-                <p className="mt-3 leading-relaxed text-muted-foreground">
-                  A proposta é submetida com informações sobre a solução,
-                  objetivos, público e contexto.
-                </p>
-              </div>
             </div>
           </div>
         </section>
