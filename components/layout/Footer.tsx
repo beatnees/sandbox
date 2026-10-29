@@ -40,12 +40,7 @@ export default function Footer() {
               >
                 Sobre
               </a>
-              <a
-                href="#como-funciona"
-                className="text-sm text-muted-foreground transition hover:text-primary"
-              >
-                Como funciona
-              </a>
+
               <a
                 href="#projetos"
                 className="text-sm text-muted-foreground transition hover:text-primary"
