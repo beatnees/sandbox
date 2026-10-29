@@ -3,20 +3,6 @@ import LoginModal from "@/components/auth/LoginModal";
 import Footer from "@/components/layout/Footer";
 import MapaSandbox from "@/components/home/MapaSandbox";
 import { createClient } from "@/lib/supabase/server";
-import Link from "next/link";
-
-type ProjetoPublico = {
-  id: string;
-  titulo: string;
-  descricao: string | null;
-  instituicao: string | null;
-  responsavel: string | null;
-  etapa: string;
-  status: string;
-  progresso: number;
-  tags: string[];
-  created_at: string;
-};
 
 export default async function Home() {
   const supabase = await createClient();
@@ -29,14 +15,6 @@ export default async function Home() {
 
   const formatarNumero = (valor: number | null | undefined) =>
     typeof valor === "number" ? valor.toLocaleString("pt-BR") : "—";
-
-  const { data: dadosProjetos, error: erroProjetos } = await supabase.rpc(
-    "obter_projetos_publicos",
-  );
-
-  const projetos: ProjetoPublico[] = erroProjetos
-    ? []
-    : ((dadosProjetos ?? []) as ProjetoPublico[]);
 
   return (
     <>
@@ -77,12 +55,19 @@ export default async function Home() {
                 </h1>
 
                 {/* Descrição */}
-                <p className="mt-7 max-w-2xl text-base leading-relaxed text-white/80 sm:text-lg md:text-xl">
-                  O Sandbox de IA na Educação é uma iniciativa construída pelo
-                  NEES/UFAL a partir da experiência com o MEC. Seu objetivo é
-                  testar soluções de Inteligência Artificial sob supervisão,
-                  documentar evidências e apoiar decisões responsáveis sobre seu
-                  uso na educação.
+                <p className="mt-7 max-w-2xl text-base font-medium leading-relaxed text-white sm:text-lg">
+                  Metodologia do NEES/UFAL, construída na experiência do Sandbox
+                  de IA na Educação do MEC, para avaliar soluções de
+                  inteligência artificial antes de ampliar seu uso em políticas
+                  públicas.
+                </p>
+                <p className="mt-4 max-w-2xl text-base leading-relaxed text-white/80 sm:text-lg md:text-xl">
+                  Soluções de IA prometem ganhos, mas trazem incertezas sobre
+                  utilidade, segurança e viabilidade. O sandbox cria um ambiente
+                  delimitado e supervisionado para observar desempenho, erros,
+                  efeitos desiguais e impactos no trabalho das equipes. O
+                  resultado é uma decisão documentada: ampliar, corrigir,
+                  restringir ou encerrar o uso.
                 </p>
 
                 {/* Botões */}
@@ -103,6 +88,12 @@ export default async function Home() {
                       className="inline-flex items-center justify-center rounded-xl border border-white/40 px-6 py-3.5 text-center font-semibold text-white transition hover:bg-white/10"
                     >
                       Veja o ciclo de testagem
+                    </a>
+                    <a
+                      href="/sobre"
+                      className="inline-flex items-center justify-center rounded-xl border border-white/40 px-6 py-3.5 text-center font-semibold text-white transition hover:bg-white/10"
+                    >
+                      Fale com o NEES
                     </a>
                   </div>
                 </div>
@@ -179,15 +170,6 @@ export default async function Home() {
                     label="Acessar plataforma →"
                     className="mt-8 w-full rounded-2xl bg-primary px-6 py-4 font-semibold text-primary-foreground transition hover:brightness-95"
                   />
-
-                  {/* Contato com o NEES */}
-                  <a
-                    href="/sobre"
-                    className="mt-3 flex w-full items-center justify-center gap-2 rounded-2xl border border-border px-6 py-4 text-center font-semibold text-foreground transition hover:bg-muted"
-                  >
-                    Fale com o NEES
-                    <span aria-hidden="true">→</span>
-                  </a>
                 </div>
               </div>
             </div>
@@ -229,20 +211,20 @@ export default async function Home() {
 
         <MapaSandbox />
 
-        {/* sobre */}
+        {/* sobre 
         <section id="sobre" className="bg-background px-6 py-20 md:py-28">
           <div className="mx-auto max-w-7xl">
-            {/* cabeçalho */}
-            <div className="mx-auto max-w-3xl text-center">
-              <span className="text-sm font-semibold uppercase tracking-widest text-primary">
+            {/* cabeçalho 
+            <div className="mx-auto max-w-4xl text-center">
+              <span className="inline-block text-xs font-bold uppercase tracking-[0.2em] text-primary md:text-sm">
                 Sobre o Sandbox
               </span>
 
-              <h2 className="mt-4 text-3xl font-bold tracking-tight text-foreground md:text-5xl">
+              <h2 className="mt-5 text-3xl font-bold leading-tight tracking-tight text-foreground md:text-5xl md:leading-[1.15]">
                 Um ambiente seguro para experimentar, aprender e evoluir.{" "}
               </h2>
 
-              <p className="mt-6 text-lg leading-relaxed text-muted-foreground">
+              <p className="mx-auto mt-7 max-w-2xl text-base leading-8 text-muted-foreground md:text-lg md:leading-9">
                 O Sandbox de IA do NEES/UFAL utiliza uma metodologia construída
                 a partir da experiência com o MEC para avaliar soluções de
                 Inteligência Artificial em um ambiente delimitado e
@@ -253,118 +235,7 @@ export default async function Home() {
             </div>
           </div>
         </section>
-
-        {/* PROJETOS */}
-        <section id="projetos" className="bg-background px-6 py-20 md:py-28">
-          <div className="mx-auto max-w-7xl">
-            {/* Cabeçalho */}
-            <div className="flex flex-col gap-6 md:flex-row md:items-end md:justify-between">
-              <div className="max-w-2xl">
-                <span className="text-sm font-semibold uppercase tracking-[0.18em] text-primary">
-                  Projetos
-                </span>
-
-                <h2 className="mt-4 text-3xl font-bold tracking-tight text-foreground md:text-5xl">
-                  Experimentos em destaque
-                </h2>
-
-                <p className="mt-5 text-lg leading-relaxed text-muted-foreground">
-                  Conheça alguns dos projetos que estão experimentando o uso
-                  responsável da Inteligência Artificial na educação.
-                </p>
-              </div>
-
-              <Link
-                href="/projetos"
-                className="font-semibold text-primary transition hover:text-accent"
-              >
-                Ver todos os projetos →
-              </Link>
-            </div>
-
-            {/* Cards */}
-            <div className="mt-14 grid gap-6 lg:grid-cols-3">
-              {projetos.length > 0 ? (
-                projetos.map((projeto) => (
-                  <article
-                    key={projeto.id}
-                    className="card-hover flex min-h-85 flex-col rounded-3xl border border-border bg-card p-8 shadow-card"
-                  >
-                    {/* Título */}
-                    <h3 className="text-2xl font-bold leading-snug text-card-foreground">
-                      {projeto.titulo}
-                    </h3>
-
-                    {/* Tags */}
-                    <div className="mt-5 flex flex-wrap gap-2">
-                      {projeto.tags.map((tag) => (
-                        <span
-                          key={tag}
-                          className="rounded-full bg-primary-soft px-4 py-2 text-sm font-medium text-primary"
-                        >
-                          {tag}
-                        </span>
-                      ))}
-                    </div>
-
-                    {/* Instituição + etapa */}
-                    <div className="mt-7">
-                      <p className="text-sm font-semibold text-foreground">
-                        {projeto.instituicao}
-                      </p>
-
-                      <p className="mt-1 text-sm text-muted-foreground">
-                        {projeto.etapa}
-                      </p>
-                    </div>
-
-                    {/* Responsável */}
-                    <div className="mt-5 border-t border-border pt-5">
-                      <p className="text-xs font-semibold uppercase tracking-wider text-muted-foreground">
-                        Responsável
-                      </p>
-
-                      <p className="mt-1 text-sm font-medium text-foreground">
-                        {projeto.responsavel}
-                      </p>
-                    </div>
-
-                    {/* Progresso */}
-                    <div className="mt-auto pt-8">
-                      <div className="flex items-center justify-between">
-                        <span className="text-sm font-medium text-muted-foreground">
-                          Progresso
-                        </span>
-
-                        <span className="text-sm font-semibold text-foreground">
-                          {projeto.progresso}%
-                        </span>
-                      </div>
-
-                      <div className="mt-3 h-2.5 overflow-hidden rounded-full bg-primary-soft">
-                        <div
-                          className="h-full rounded-full bg-primary"
-                          style={{
-                            width: `${projeto.progresso}%`,
-                          }}
-                        />
-                      </div>
-                    </div>
-                  </article>
-                ))
-              ) : (
-                <div className="lg:col-span-3 rounded-3xl border border-border bg-card px-6 py-12 text-center">
-                  <h3 className="text-xl font-semibold text-card-foreground">
-                    Novos projetos em breve
-                  </h3>
-                  <p className="mt-3 text-muted-foreground">
-                    Os projetos publicados no Sandbox aparecerão aqui.
-                  </p>
-                </div>
-              )}
-            </div>
-          </div>
-        </section>
+        */}
       </main>
 
       <Footer></Footer>

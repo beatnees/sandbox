@@ -11,7 +11,8 @@ const blocos = [
     descricao:
       "Sistemas de IA, serviços digitais e usos de dados, em versões existentes ou em desenvolvimento.",
     href: "/o-que-e",
-    posicao: { left: "5%", top: "9%", width: "22%" },
+
+    posicao: { left: "39%", top: "2%", width: "22%" },
   },
   {
     numero: 2,
@@ -20,7 +21,8 @@ const blocos = [
     descricao:
       "Órgão público demandante, NEES, especialistas e o responsável pela solução.",
     href: "/governanca",
-    posicao: { left: "39%", top: "2%", width: "22%" },
+
+    posicao: { left: "73%", top: "9%", width: "22%" },
   },
   {
     numero: 3,
@@ -29,7 +31,8 @@ const blocos = [
     descricao:
       "LGPD, ética em pesquisa, autorizações setoriais e supervisão humana. Participar do Sandbox não dispensa essas exigências.",
     href: "/governanca",
-    posicao: { left: "73%", top: "9%", width: "22%" },
+
+    posicao: { left: "74%", top: "36%", width: "22%" },
   },
   {
     numero: 4,
@@ -38,7 +41,8 @@ const blocos = [
     descricao:
       "Ciclo de seis meses em quatro fases: desenho, preparação, experimentação e evidência, com portões de decisão.",
     href: "/ciclo",
-    posicao: { left: "74%", top: "36%", width: "22%" },
+
+    posicao: { left: "65%", top: "73%", width: "25%" },
   },
   {
     numero: 5,
@@ -47,7 +51,8 @@ const blocos = [
     descricao:
       "Plano, protocolo, relatório técnico, recomendação e guia para novos ciclos.",
     href: "/entregas",
-    posicao: { left: "65%", top: "73%", width: "25%" },
+
+    posicao: { left: "10%", top: "73%", width: "25%" },
   },
   {
     numero: 6,
@@ -56,7 +61,8 @@ const blocos = [
     descricao:
       "Ampliar, corrigir, restringir ou encerrar o uso, com condições registradas.",
     href: "/entregas",
-    posicao: { left: "10%", top: "73%", width: "25%" },
+
+    posicao: { left: "4%", top: "36%", width: "22%" },
   },
   {
     numero: 7,
@@ -65,7 +71,7 @@ const blocos = [
     descricao:
       "Transformar incertezas sobre utilidade, segurança e viabilidade em evidências sobre um uso definido.",
     href: "/o-que-e",
-    posicao: { left: "4%", top: "36%", width: "22%" },
+    posicao: { left: "5%", top: "9%", width: "22%" },
   },
 ];
 
@@ -85,7 +91,7 @@ export default function MapaSandbox() {
           </h2>
 
           <p className="mt-6 text-lg leading-relaxed text-muted-foreground">
-            Explore o mapa. Clique em cada bloco para entender como o Sandbox
+            Explore o mapa. Clique em cada bloco para ver como o sandbox
             funciona.
           </p>
         </header>
@@ -157,14 +163,40 @@ export default function MapaSandbox() {
               <text x="680" y="325">
                 segue
               </text>
-              <text x="620" y="465">
+
+              {/* 4 → 5 */}
+              <text
+                x="500"
+                y="560"
+                opacity={mostrarCaminho ? 1 : 0}
+                style={{ transition: "opacity 500ms ease" }}
+              >
                 gera
               </text>
-              <text x="370" y="465">
+
+              {/* 5 → 6 */}
+              <text
+                x="220"
+                y="435"
+                opacity={mostrarCaminho ? 1 : 0}
+                style={{ transition: "opacity 500ms ease 550ms" }}
+              >
                 subsidia
               </text>
-              <text x="325" y="330">
-                abre ciclos
+
+              {/* 6 → 7 */}
+              <text
+                x="205"
+                y="205"
+                opacity={mostrarCaminho ? 1 : 0}
+                style={{ transition: "opacity 500ms ease 1100ms" }}
+              >
+                <tspan x="205" dy="0">
+                  abre novos
+                </tspan>
+                <tspan x="205" dy="18">
+                  ciclos
+                </tspan>
               </text>
             </g>
 
@@ -177,8 +209,9 @@ export default function MapaSandbox() {
               markerEnd="url(#seta-laranja-sandbox)"
               opacity={mostrarCaminho ? 1 : 0}
             >
+              {/* 4 → 5: Como funciona → O que entrega */}
               <path
-                d="M850 370 L800 510"
+                d="M650 575 L350 575"
                 pathLength="100"
                 strokeDasharray="100"
                 strokeDashoffset={mostrarCaminho ? 0 : 100}
@@ -187,8 +220,9 @@ export default function MapaSandbox() {
                 }}
               />
 
+              {/* 5 → 6: O que entrega → Que decisão apoia */}
               <path
-                d="M650 575 L350 575"
+                d="M225 510 L150 370"
                 pathLength="100"
                 strokeDasharray="100"
                 strokeDashoffset={mostrarCaminho ? 0 : 100}
@@ -197,8 +231,9 @@ export default function MapaSandbox() {
                 }}
               />
 
+              {/* 6 → 7: Que decisão apoia → Por que testar */}
               <path
-                d="M225 510 L150 370"
+                d="M150 250 L160 165"
                 pathLength="100"
                 strokeDasharray="100"
                 strokeDashoffset={mostrarCaminho ? 0 : 100}
@@ -211,9 +246,6 @@ export default function MapaSandbox() {
 
           {/* Sandbox central */}
           <div className="absolute left-[39%] top-[39%] flex h-[21.5%] w-[22%] flex-col items-center justify-center rounded-3xl border-2 border-primary bg-primary px-3 text-center text-primary-foreground shadow-xl">
-            <span className="text-xs font-semibold uppercase tracking-widest opacity-80">
-              Centro
-            </span>
             <span className="mt-2 text-xl font-bold leading-tight lg:text-2xl">
               Sandbox de IA
             </span>
@@ -247,11 +279,7 @@ export default function MapaSandbox() {
                 }`}
               >
                 <span className="text-xs font-bold uppercase tracking-wider text-muted-foreground">
-                  Bloco {bloco.numero}
-                </span>
-
-                <span className="mt-2 text-base font-bold leading-snug text-card-foreground lg:text-lg">
-                  {bloco.titulo}
+                  {bloco.numero} - {bloco.titulo}
                 </span>
 
                 <span className="mt-2 hidden text-sm leading-relaxed text-muted-foreground group-hover:block group-focus-visible:block">
@@ -282,11 +310,11 @@ export default function MapaSandbox() {
                   }`}
                 >
                   <span className="text-sm font-semibold text-muted-foreground">
-                    {bloco.numero}. {bloco.relacao}
+                    {bloco.relacao}
                   </span>
 
                   <span className="mt-1 block text-lg font-bold text-card-foreground">
-                    {bloco.titulo}
+                    {bloco.numero} - {bloco.titulo}
                   </span>
 
                   <span className="mt-2 block text-sm leading-relaxed text-muted-foreground">
