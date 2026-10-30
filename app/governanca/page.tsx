@@ -7,7 +7,7 @@ export default function GovernancaPage() {
     <>
       <Header />
 
-      <main>
+      <main className="pb-20">
         <section className="bg-gradient-hero px-6 py-16 text-white md:py-24">
           <div className="mx-auto max-w-7xl">
             <Link
@@ -37,7 +37,7 @@ export default function GovernancaPage() {
         <section className="px-6 py-16 md:py-20">
           <div className="mx-auto max-w-7xl">
             <div className="mb-10 max-w-3xl">
-              <p className="mb-3 text-sm font-semibold uppercase tracking-wider text-[#176b73]">
+              <p className="mb-3 text-sm font-semibold uppercase tracking-wider text-[#ea580c]">
                 Responsabilidades
               </p>
 
@@ -51,10 +51,69 @@ export default function GovernancaPage() {
                 competências.
               </p>
             </div>
+            <div className="mt-10 rounded-3xl border border-[#fed7aa] bg-[#fff7ed] p-5 md:p-10">
+              <div className="mx-auto grid max-w-5xl grid-cols-1 items-center gap-4 md:grid-cols-3 md:gap-6">
+                {/* Órgão demandante */}
+                <div className="md:col-start-2">
+                  <article className="rounded-2xl border-2 border-border bg-card p-5 text-center">
+                    <h3 className="font-bold text-[#172b4d]">
+                      Órgão demandante
+                    </h3>
+                    <span className="mt-3 inline-flex rounded-full border border-orange-300 bg-orange-50 px-4 py-1 text-sm font-bold text-[#ea580c]">
+                      define
+                    </span>
+                  </article>
+                </div>
+
+                {/* Equipes e especialistas */}
+                <div className="md:col-start-1 md:row-start-2">
+                  <article className="rounded-2xl border-2 border-border bg-card p-5 text-center">
+                    <h3 className="font-bold text-[#172b4d]">
+                      Equipes e especialistas
+                    </h3>
+                    <span className="mt-3 inline-flex rounded-full border border-orange-300 bg-orange-50 px-4 py-1 text-sm font-bold text-[#ea580c]">
+                      avalia
+                    </span>
+                  </article>
+                </div>
+
+                {/* Teste central */}
+                <div className="flex min-h-40 items-center justify-center rounded-full border-2 border-primary bg-primary p-8 text-center text-white shadow-lg md:col-start-2 md:row-start-2">
+                  <div>
+                    <span className="text-xs font-semibold uppercase tracking-widest text-white/70">
+                      Centro do processo
+                    </span>
+                    <h3 className="mt-2 text-2xl font-bold">TESTE</h3>
+                  </div>
+                </div>
+
+                {/* NEES */}
+                <div className="md:col-start-3 md:row-start-2">
+                  <article className="rounded-2xl border-2 border-border bg-card p-5 text-center">
+                    <h3 className="font-bold text-[#172b4d]">NEES</h3>
+                    <span className="mt-3 inline-flex rounded-full border border-orange-300 bg-orange-50 px-4 py-1 text-sm font-bold text-[#ea580c]">
+                      opera
+                    </span>
+                  </article>
+                </div>
+
+                {/* Responsável pela solução */}
+                <div className="md:col-start-2 md:row-start-3">
+                  <article className="rounded-2xl border-2 border-border bg-card p-5 text-center">
+                    <h3 className="font-bold text-[#172b4d]">
+                      Responsável pela solução
+                    </h3>
+                    <span className="mt-3 inline-flex rounded-full border border-orange-300 bg-orange-50 px-4 py-1 text-sm font-bold text-[#ea580c]">
+                      corrige
+                    </span>
+                  </article>
+                </div>
+              </div>
+            </div>
 
             <div className="grid gap-5 md:grid-cols-2">
               <article className="rounded-2xl border border-slate-200 bg-white p-6">
-                <h3 className="text-xl font-bold text-[#176b73]">
+                <h3 className="text-xl font-bold text-[#ea580c]">
                   Órgão demandante
                 </h3>
                 <p className="mt-3 leading-relaxed text-slate-600">
@@ -64,7 +123,7 @@ export default function GovernancaPage() {
               </article>
 
               <article className="rounded-2xl border border-slate-200 bg-white p-6">
-                <h3 className="text-xl font-bold text-[#176b73]">NEES</h3>
+                <h3 className="text-xl font-bold text-[#ea580c]">NEES</h3>
                 <p className="mt-3 leading-relaxed text-slate-600">
                   Estrutura o protocolo, opera os testes, documenta resultados e
                   recomenda condições de uso.
@@ -72,7 +131,7 @@ export default function GovernancaPage() {
               </article>
 
               <article className="rounded-2xl border border-slate-200 bg-white p-6">
-                <h3 className="text-xl font-bold text-[#176b73]">
+                <h3 className="text-xl font-bold text-[#ea580c]">
                   Equipes e especialistas
                 </h3>
                 <p className="mt-3 leading-relaxed text-slate-600">
@@ -82,7 +141,7 @@ export default function GovernancaPage() {
               </article>
 
               <article className="rounded-2xl border border-slate-200 bg-white p-6">
-                <h3 className="text-xl font-bold text-[#176b73]">
+                <h3 className="text-xl font-bold text-[#ea580c]">
                   Responsável pela solução
                 </h3>
                 <p className="mt-3 leading-relaxed text-slate-600">
@@ -94,10 +153,10 @@ export default function GovernancaPage() {
           </div>
         </section>
 
-        <section className="bg-[#f5f8fc] px-6 py-16 md:py-20">
+        <section className="bg-[#fff7ed] px-6 py-16 md:py-20">
           <div className="mx-auto max-w-7xl">
             <div className="mb-10 max-w-3xl">
-              <p className="mb-3 text-sm font-semibold uppercase tracking-wider text-[#176b73]">
+              <p className="mb-3 text-sm font-semibold uppercase tracking-wider text-[#ea580c]">
                 Proteção e responsabilidade
               </p>
 
@@ -114,7 +173,7 @@ export default function GovernancaPage() {
 
             <div className="grid gap-5 sm:grid-cols-2 lg:grid-cols-4">
               <article className="rounded-2xl border border-slate-200 bg-white p-6">
-                <h3 className="text-lg font-bold text-[#176b73]">
+                <h3 className="text-lg font-bold text-[#ea580c]">
                   Dados pessoais
                 </h3>
                 <p className="mt-3 leading-relaxed text-slate-600">
@@ -123,7 +182,7 @@ export default function GovernancaPage() {
               </article>
 
               <article className="rounded-2xl border border-slate-200 bg-white p-6">
-                <h3 className="text-lg font-bold text-[#176b73]">
+                <h3 className="text-lg font-bold text-[#ea580c]">
                   Supervisão humana
                 </h3>
                 <p className="mt-3 leading-relaxed text-slate-600">
@@ -132,7 +191,7 @@ export default function GovernancaPage() {
               </article>
 
               <article className="rounded-2xl border border-slate-200 bg-white p-6">
-                <h3 className="text-lg font-bold text-[#176b73]">
+                <h3 className="text-lg font-bold text-[#ea580c]">
                   Autorizações setoriais
                 </h3>
                 <p className="mt-3 leading-relaxed text-slate-600">
@@ -142,7 +201,7 @@ export default function GovernancaPage() {
               </article>
 
               <article className="rounded-2xl border border-slate-200 bg-white p-6">
-                <h3 className="text-lg font-bold text-[#176b73]">
+                <h3 className="text-lg font-bold text-[#ea580c]">
                   Pesquisa com pessoas
                 </h3>
                 <p className="mt-3 leading-relaxed text-slate-600">
@@ -155,8 +214,8 @@ export default function GovernancaPage() {
 
         <section className="px-6 py-16 md:py-20">
           <div className="mx-auto max-w-7xl">
-            <div className="rounded-2xl border border-[#b8d8d6] bg-[#eaf4f3] p-8 md:p-10">
-              <p className="mb-3 text-sm font-semibold uppercase tracking-wider text-[#176b73]">
+            <div className="rounded-2xl border border-[#fed7aa] bg-[#fff7ed] p-8 md:p-10">
+              <p className="mb-3 text-sm font-semibold uppercase tracking-wider text-[#ea580c]">
                 Independência na avaliação
               </p>
 
@@ -173,10 +232,10 @@ export default function GovernancaPage() {
           </div>
         </section>
 
-        <section className="bg-[#f5f8fc] px-6 py-16 md:py-20">
+        <section className="bg-[#fff7ed] px-6 py-16 md:py-20">
           <div className="mx-auto max-w-7xl">
             <div className="mb-10 max-w-3xl">
-              <p className="mb-3 text-sm font-semibold uppercase tracking-wider text-[#176b73]">
+              <p className="mb-3 text-sm font-semibold uppercase tracking-wider text-[#ea580c]">
                 Critérios de execução
               </p>
 
@@ -194,7 +253,7 @@ export default function GovernancaPage() {
             <div className="overflow-x-auto rounded-2xl border border-slate-200 bg-white">
               <table className="w-full min-w-212.5 border-collapse text-left">
                 <thead>
-                  <tr className="bg-[#176b73] text-white">
+                  <tr className="bg-[#ea580c] text-white">
                     <th className="px-5 py-4 text-sm font-semibold">
                       Enquadramento
                     </th>
@@ -222,7 +281,7 @@ export default function GovernancaPage() {
                     </td>
                   </tr>
 
-                  <tr className="bg-[#f5f8fc]">
+                  <tr className="bg-[#fff7ed]">
                     <td className="px-5 py-5 font-semibold text-[#172b4d]">
                       Sandbox regulatório
                     </td>
@@ -250,7 +309,7 @@ export default function GovernancaPage() {
                     </td>
                   </tr>
 
-                  <tr className="bg-[#f5f8fc]">
+                  <tr className="bg-[#fff7ed]">
                     <td className="px-5 py-5 font-semibold text-[#172b4d]">
                       Autorizações setoriais e pesquisa
                     </td>
@@ -292,7 +351,9 @@ export default function GovernancaPage() {
           </div>
         </section>
       </main>
-
+      <div className="fixed inset-x-0 bottom-0 z-50 border-t border-orange-300 bg-[#ea580c] px-4 py-4 text-center text-sm font-bold text-white shadow-lg md:text-base">
+        O contrato não flexibiliza normas
+      </div>
       <Footer />
     </>
   );
