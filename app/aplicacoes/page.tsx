@@ -36,8 +36,8 @@ export default function AplicacoesPage() {
         <section className="px-6 py-16 md:py-20">
           <div className="mx-auto max-w-7xl">
             <div className="grid gap-6 lg:grid-cols-2">
-              <article className="rounded-2xl border border-[#b8d8d6] bg-[#eaf4f3] p-8 md:p-10">
-                <span className="mb-5 inline-flex h-10 w-10 items-center justify-center rounded-full bg-[#176b73] text-lg font-bold text-white">
+              <article className="rounded-2xl border border-[#fed7aa] bg-[#fff7ed] p-8 md:p-10">
+                <span className="mb-5 inline-flex h-10 w-10 items-center justify-center rounded-full bg-[#ea580c] text-lg font-bold text-white">
                   A
                 </span>
 
@@ -52,7 +52,7 @@ export default function AplicacoesPage() {
                 </p>
 
                 <div className="mt-8 rounded-xl bg-white/80 p-5">
-                  <p className="text-sm font-semibold uppercase tracking-wider text-[#176b73]">
+                  <p className="text-sm font-semibold uppercase tracking-wider text-[#ea580c]">
                     Fluxo
                   </p>
                   <p className="mt-2 font-semibold text-[#172b4d]">
@@ -61,8 +61,8 @@ export default function AplicacoesPage() {
                 </div>
               </article>
 
-              <article className="rounded-2xl border border-[#e6c99e] bg-[#fff5e8] p-8 md:p-10">
-                <span className="mb-5 inline-flex h-10 w-10 items-center justify-center rounded-full bg-[#b66a24] text-lg font-bold text-white">
+              <article className="rounded-2xl border border-[#fed7aa] bg-[#fff7ed] p-8 md:p-10">
+                <span className="mb-5 inline-flex h-10 w-10 items-center justify-center rounded-full bg-[#ea580c] text-lg font-bold text-white">
                   B
                 </span>
 
@@ -78,7 +78,7 @@ export default function AplicacoesPage() {
                 </p>
 
                 <div className="mt-8 rounded-xl bg-white/80 p-5">
-                  <p className="text-sm font-semibold uppercase tracking-wider text-[#b66a24]">
+                  <p className="text-sm font-semibold uppercase tracking-wider text-[#ea580c]">
                     Fluxo
                   </p>
                   <p className="mt-2 font-semibold text-[#172b4d]">
@@ -102,7 +102,7 @@ export default function AplicacoesPage() {
         <section className="bg-[#f5f8fc] px-6 py-16 md:py-20">
           <div className="mx-auto max-w-7xl">
             <div className="mb-10 max-w-3xl">
-              <p className="mb-3 text-sm font-semibold uppercase tracking-wider text-[#176b73]">
+              <p className="mb-3 text-sm font-semibold uppercase tracking-wider text-[#ea580c]">
                 Áreas de aplicação
               </p>
 
@@ -117,11 +117,11 @@ export default function AplicacoesPage() {
               </p>
             </div>
 
-            <article className="mb-8 rounded-2xl border border-[#b8d8d6] bg-white p-7 md:p-9">
+            <article className="mb-8 rounded-2xl border border-[#fed7aa] bg-white p-7 md:p-9">
               <div className="flex flex-wrap items-center justify-between gap-3">
                 <h3 className="text-2xl font-bold text-[#172b4d]">Educação</h3>
 
-                <span className="rounded-full bg-[#e8f3f3] px-4 py-2 text-xs font-semibold text-[#176b73]">
+                <span className="rounded-full bg-[#fff7ed] px-4 py-2 text-xs font-semibold text-[#ea580c]">
                   Experiência realizada
                 </span>
               </div>
@@ -132,7 +132,7 @@ export default function AplicacoesPage() {
 
               <Link
                 href="/experiencia-mec"
-                className="mt-5 inline-flex items-center gap-2 font-semibold text-[#176b73] transition-colors hover:text-[#12565d]"
+                className="mt-5 inline-flex items-center gap-2 font-semibold text-[#ea580c] transition-colors hover:text-[#c2410c]"
               >
                 Conheça a experiência do MEC →
               </Link>
@@ -144,7 +144,7 @@ export default function AplicacoesPage() {
                   Saúde: exemplos de aplicação
                 </h3>
 
-                <span className="rounded-full bg-[#fff1df] px-4 py-2 text-xs font-semibold text-[#a65c1d]">
+                <span className="rounded-full bg-[#fff7ed] px-4 py-2 text-xs font-semibold text-[#ea580c]">
                   Exemplos de aplicação
                 </span>
               </div>
@@ -158,7 +158,7 @@ export default function AplicacoesPage() {
 
             <div className="grid gap-5 sm:grid-cols-2">
               <article className="rounded-2xl border border-slate-200 bg-white p-6">
-                <h4 className="text-lg font-bold text-[#176b73]">
+                <h4 className="text-lg font-bold text-[#ea580c]">
                   Vigilância de dengue
                 </h4>
                 <p className="mt-3 leading-relaxed text-slate-600">
@@ -170,7 +170,7 @@ export default function AplicacoesPage() {
               </article>
 
               <article className="rounded-2xl border border-slate-200 bg-white p-6">
-                <h4 className="text-lg font-bold text-[#176b73]">
+                <h4 className="text-lg font-bold text-[#ea580c]">
                   Diabetes na atenção primária
                 </h4>
                 <p className="mt-3 leading-relaxed text-slate-600">
@@ -181,7 +181,7 @@ export default function AplicacoesPage() {
               </article>
 
               <article className="rounded-2xl border border-slate-200 bg-white p-6">
-                <h4 className="text-lg font-bold text-[#176b73]">
+                <h4 className="text-lg font-bold text-[#ea580c]">
                   Saúde mental
                 </h4>
                 <p className="mt-3 leading-relaxed text-slate-600">
@@ -192,7 +192,7 @@ export default function AplicacoesPage() {
               </article>
 
               <article className="rounded-2xl border border-slate-200 bg-white p-6">
-                <h4 className="text-lg font-bold text-[#176b73]">
+                <h4 className="text-lg font-bold text-[#ea580c]">
                   Violência contra mulheres
                 </h4>
                 <p className="mt-3 leading-relaxed text-slate-600">
@@ -207,8 +207,8 @@ export default function AplicacoesPage() {
 
         <section className="px-6 py-12 md:py-16">
           <div className="mx-auto max-w-7xl">
-            <div className="rounded-2xl border-l-4 border-[#b66a24] bg-[#fff5e8] p-7 md:p-9">
-              <p className="mb-3 text-sm font-bold uppercase tracking-wider text-[#a65c1d]">
+            <div className="rounded-2xl border-l-4 border-[#fed7aa] bg-[#fff7ed] p-7 md:p-9">
+              <p className="mb-3 text-sm font-bold uppercase tracking-wider text-[#ea580c]">
                 Importante
               </p>
 
