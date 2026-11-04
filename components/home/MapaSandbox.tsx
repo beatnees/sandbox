@@ -116,88 +116,34 @@ export default function MapaSandbox() {
         >
           <svg
             viewBox="0 0 1000 700"
-            className="absolute inset-0 h-full w-full"
+            className="absolute inset-0 z-0 h-full w-full"
             fill="none"
             aria-hidden="true"
           >
             <defs>
               <marker
                 id="seta-laranja-sandbox"
-                markerWidth="8"
-                markerHeight="8"
-                refX="6"
-                refY="3"
+                viewBox="0 0 10 10"
+                markerWidth="10"
+                markerHeight="10"
+                refX="9"
+                refY="5"
                 orient="auto"
+                markerUnits="userSpaceOnUse"
               >
-                <path d="M0,0 L6,3 L0,6 Z" fill="#ea580c" />
+                <path d="M0 0 L10 5 L0 10 Z" fill="#ea580c" />
               </marker>
             </defs>
 
             {/* Conexões entre os blocos e o Sandbox central */}
             <g stroke="#94a3b8" strokeWidth="1.5" strokeLinecap="round">
-              <path d="M430 290 L270 190" />
-              <path d="M500 275 L500 145" />
-              <path d="M570 290 L730 190" />
-              <path d="M610 345 L740 310" />
-              <path d="M570 425 L650 510" />
-              <path d="M430 425 L350 510" />
-              <path d="M390 345 L260 310" />
-            </g>
-
-            {/* Relações indicadas no documento */}
-            <g
-              fill="#475569"
-              fontSize="14"
-              fontWeight="600"
-              textAnchor="middle"
-            >
-              <text x="335" y="238">
-                avalia
-              </text>
-              <text x="520" y="215">
-                reúne
-              </text>
-              <text x="665" y="238">
-                respeita
-              </text>
-              <text x="680" y="325">
-                segue
-              </text>
-
-              {/* 4 → 5 */}
-              <text
-                x="500"
-                y="560"
-                opacity={mostrarCaminho ? 1 : 0}
-                style={{ transition: "opacity 500ms ease" }}
-              >
-                gera
-              </text>
-
-              {/* 5 → 6 */}
-              <text
-                x="220"
-                y="435"
-                opacity={mostrarCaminho ? 1 : 0}
-                style={{ transition: "opacity 500ms ease 550ms" }}
-              >
-                subsidia
-              </text>
-
-              {/* 6 → 7 */}
-              <text
-                x="205"
-                y="205"
-                opacity={mostrarCaminho ? 1 : 0}
-                style={{ transition: "opacity 500ms ease 1100ms" }}
-              >
-                <tspan x="205" dy="0">
-                  abre novos
-                </tspan>
-                <tspan x="205" dy="18">
-                  ciclos
-                </tspan>
-              </text>
+              <path d="M500 350 L270 190" />
+              <path d="M500 350 L500 145" />
+              <path d="M500 350 L730 190" />
+              <path d="M500 350 L740 310" />
+              <path d="M500 350 L650 510" />
+              <path d="M500 350 L350 510" />
+              <path d="M500 350 L260 310" />
             </g>
 
             {/* Percurso laranja: ciclo, entregas, decisão e novos ciclos */}
@@ -211,7 +157,7 @@ export default function MapaSandbox() {
             >
               {/* 4 → 5: Como funciona → O que entrega */}
               <path
-                d="M650 575 L350 575"
+                d="M 640 570 L 360 570"
                 pathLength="100"
                 strokeDasharray="100"
                 strokeDashoffset={mostrarCaminho ? 0 : 100}
@@ -222,7 +168,7 @@ export default function MapaSandbox() {
 
               {/* 5 → 6: O que entrega → Que decisão apoia */}
               <path
-                d="M225 510 L150 370"
+                d="M 215 505 L 155 375"
                 pathLength="100"
                 strokeDasharray="100"
                 strokeDashoffset={mostrarCaminho ? 0 : 100}
@@ -233,7 +179,7 @@ export default function MapaSandbox() {
 
               {/* 6 → 7: Que decisão apoia → Por que testar */}
               <path
-                d="M150 250 L160 165"
+                d="M 150 245 L 158 185"
                 pathLength="100"
                 strokeDasharray="100"
                 strokeDashoffset={mostrarCaminho ? 0 : 100}
@@ -245,7 +191,7 @@ export default function MapaSandbox() {
           </svg>
 
           {/* Sandbox central */}
-          <div className="absolute left-[39%] top-[39%] flex h-[21.5%] w-[22%] flex-col items-center justify-center rounded-3xl border-2 border-primary bg-primary px-3 text-center text-primary-foreground shadow-xl">
+          <div className="absolute left-[39%] top-[39%] z-10 flex h-[21.5%] w-[22%] flex-col items-center justify-center rounded-3xl border-2 border-primary bg-primary px-3 text-center text-primary-foreground shadow-xl">
             <span className="mt-2 text-xl font-bold leading-tight lg:text-2xl">
               Sandbox de IA
             </span>
