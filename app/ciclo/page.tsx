@@ -702,13 +702,22 @@ export default function CicloPage() {
               ← Voltar ao mapa
             </Link>
 
-            <Link
-              href="/cronograma"
-              className="inline-flex items-center justify-center gap-2 rounded-xl bg-primary px-6 py-3 font-semibold text-primary-foreground transition hover:brightness-95 focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-primary"
-            >
-              Próxima etapa: Cronograma
-              <span aria-hidden="true">→</span>
-            </Link>
+            <div className="flex flex-col gap-3 sm:flex-row">
+              <Link
+                href="/experiencia-mec"
+                className="inline-flex items-center justify-center rounded-xl border border-border px-6 py-3 font-semibold text-foreground transition hover:bg-muted"
+              >
+                ← Experiência com o MEC
+              </Link>
+
+              <Link
+                href="/cronograma"
+                className="inline-flex items-center justify-center gap-2 rounded-xl bg-primary px-6 py-3 font-semibold text-primary-foreground transition hover:brightness-95"
+              >
+                Cronograma
+                <span aria-hidden="true">→</span>
+              </Link>
+            </div>
           </div>
         </section>
       </main>

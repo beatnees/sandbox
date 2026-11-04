@@ -2,20 +2,8 @@ import Header from "@/components/layout/Header";
 import LoginModal from "@/components/auth/LoginModal";
 import Footer from "@/components/layout/Footer";
 import MapaSandbox from "@/components/home/MapaSandbox";
-import { createClient } from "@/lib/supabase/server";
 
 export default async function Home() {
-  const supabase = await createClient();
-
-  const { data: dadosIndicadores, error: erroIndicadores } = await supabase.rpc(
-    "obter_indicadores_publicos",
-  );
-
-  const indicadores = !erroIndicadores ? dadosIndicadores?.[0] : null;
-
-  const formatarNumero = (valor: number | null | undefined) =>
-    typeof valor === "number" ? valor.toLocaleString("pt-BR") : "—";
-
   return (
     <>
       <Header />
@@ -173,69 +161,11 @@ export default async function Home() {
                 </div>
               </div>
             </div>
-
-            {/* INDICADORES */}
-            <div className="mt-16 grid grid-cols-2 gap-8 border-t border-white/20 pt-10 md:grid-cols-4 lg:mt-20">
-              <div>
-                <div className="text-3xl font-bold text-white md:text-4xl">
-                  {formatarNumero(indicadores?.projetos_ativos)}
-                </div>
-                <p className="mt-2 text-sm text-white/70">projetos ativos</p>
-              </div>
-
-              <div>
-                <div className="text-3xl font-bold text-white md:text-4xl">
-                  {formatarNumero(indicadores?.instituicoes)}
-                </div>
-                <p className="mt-2 text-sm text-white/70">instituições</p>
-              </div>
-
-              <div>
-                <div className="text-3xl font-bold text-white md:text-4xl">
-                  {formatarNumero(indicadores?.evidencias_registradas)}
-                </div>
-                <p className="mt-2 text-sm text-white/70">
-                  evidências registradas
-                </p>
-              </div>
-
-              <div>
-                <div className="text-3xl font-bold text-white md:text-4xl">
-                  {formatarNumero(indicadores?.participantes)}
-                </div>
-                <p className="mt-2 text-sm text-white/70">participantes</p>
-              </div>
-            </div>
           </div>
         </section>
 
+        {/* mapa */}
         <MapaSandbox />
-
-        {/* sobre 
-        <section id="sobre" className="bg-background px-6 py-20 md:py-28">
-          <div className="mx-auto max-w-7xl">
-            {/* cabeçalho 
-            <div className="mx-auto max-w-4xl text-center">
-              <span className="inline-block text-xs font-bold uppercase tracking-[0.2em] text-primary md:text-sm">
-                Sobre o Sandbox
-              </span>
-
-              <h2 className="mt-5 text-3xl font-bold leading-tight tracking-tight text-foreground md:text-5xl md:leading-[1.15]">
-                Um ambiente seguro para experimentar, aprender e evoluir.{" "}
-              </h2>
-
-              <p className="mx-auto mt-7 max-w-2xl text-base leading-8 text-muted-foreground md:text-lg md:leading-9">
-                O Sandbox de IA do NEES/UFAL utiliza uma metodologia construída
-                a partir da experiência com o MEC para avaliar soluções de
-                Inteligência Artificial em um ambiente delimitado e
-                supervisionado. O objetivo é produzir evidências que apoiem
-                decisões sobre ampliar, corrigir, restringir ou encerrar seu uso
-                em políticas públicas.
-              </p>
-            </div>
-          </div>
-        </section>
-        */}
       </main>
 
       <Footer></Footer>

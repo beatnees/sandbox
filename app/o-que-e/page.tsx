@@ -295,7 +295,7 @@ export default function OQueEPage() {
               href="/experiencia-mec"
               className="inline-flex items-center justify-center gap-2 rounded-xl bg-primary px-6 py-3 font-semibold text-primary-foreground transition hover:brightness-95 focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-primary"
             >
-              Próxima etapa: Nossa experiência com o MEC
+              Nossa experiência com o MEC
               <span aria-hidden="true">→</span>
             </Link>
           </div>

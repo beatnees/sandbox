@@ -52,7 +52,7 @@ export default function Footer() {
             {/* Selo ISO */}
             <div className="flex items-center gap-4">
               <Image
-                src="/selo.png"
+                src="selo.jpeg"
                 alt="Selo de certificação ISO/IEC 27001"
                 width={56}
                 height={56}

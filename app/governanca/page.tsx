@@ -12,54 +12,57 @@ export default function GovernancaPage() {
           <div className="mx-auto max-w-7xl">
             <Link
               href="/"
-              className="mb-8 inline-flex text-sm text-white/80 transition-colors hover:text-white"
+              className="inline-flex items-center gap-2 text-sm font-medium text-white/80 transition hover:text-white"
             >
-              ← Voltar ao mapa do sandbox
+              <span aria-hidden="true">←</span>
+              Voltar à página inicial
             </Link>
 
-            <p className="mb-4 text-sm font-semibold uppercase tracking-wider text-white/70">
-              Governança e salvaguardas
-            </p>
+            <div className="mt-10 max-w-4xl">
+              <p className="text-sm font-semibold uppercase tracking-widest text-white/70">
+                Governança e salvaguardas
+              </p>
 
-            <h1 className="max-w-4xl text-4xl font-bold leading-tight md:text-5xl">
-              Papéis definidos para supervisionar cada experimento
-            </h1>
+              <h1 className="mt-5 text-4xl font-bold leading-tight tracking-tight sm:text-5xl md:text-6xl">
+                Papéis definidos para supervisionar cada experimento
+              </h1>
 
-            <p className="mt-6 max-w-3xl text-lg leading-relaxed text-white/85">
-              Cada experimento define quem supervisiona, quem corrige falhas e
-              quem decide sobre o uso. A governança aproveita instâncias e
-              fluxos que o órgão já tem, sem criar uma estrutura de decisão
-              paralela.
-            </p>
+              <p className="mt-7 max-w-3xl text-base leading-relaxed text-white/80 sm:text-lg md:text-xl">
+                Cada experimento define quem supervisiona, quem corrige falhas e
+                quem decide sobre o uso. A governança aproveita instâncias e
+                fluxos que o órgão já tem, sem criar uma estrutura de decisão
+                paralela.
+              </p>
+            </div>
           </div>
         </section>
 
         <section className="px-6 py-16 md:py-20">
           <div className="mx-auto max-w-7xl">
             <div className="mb-10 max-w-3xl">
-              <p className="mb-3 text-sm font-semibold uppercase tracking-wider text-[#ea580c]">
+              <p className="mb-3 text-sm font-semibold uppercase tracking-wider text-primary">
                 Responsabilidades
               </p>
 
-              <h2 className="text-3xl font-bold text-[#172b4d] md:text-4xl">
+              <h2 className="text-3xl font-bold text-foreground md:text-4xl">
                 Quem faz o quê
               </h2>
 
-              <p className="mt-4 leading-relaxed text-slate-600">
+              <p className="mt-4 leading-relaxed text-muted-foreground">
                 Cada participante tem responsabilidades definidas para garantir
                 acompanhamento, correção de falhas e decisões dentro de suas
                 competências.
               </p>
             </div>
-            <div className="mt-10 rounded-3xl border border-[#fed7aa] bg-[#fff7ed] p-5 md:p-10">
+            <div className="mt-10 rounded-3xl border border-border bg-card/40 p-5 md:p-10">
               <div className="mx-auto grid max-w-5xl grid-cols-1 items-center gap-4 md:grid-cols-3 md:gap-6">
                 {/* Órgão demandante */}
                 <div className="md:col-start-2">
                   <article className="rounded-2xl border-2 border-border bg-card p-5 text-center">
-                    <h3 className="font-bold text-[#172b4d]">
+                    <h3 className="font-bold text-foreground">
                       Órgão demandante
                     </h3>
-                    <span className="mt-3 inline-flex rounded-full border border-orange-300 bg-orange-50 px-4 py-1 text-sm font-bold text-[#ea580c]">
+                    <span className="mt-3 inline-flex rounded-full border border-primary/30 bg-primary/10 px-4 py-1 text-sm font-bold text-primary">
                       define
                     </span>
                   </article>
@@ -68,10 +71,10 @@ export default function GovernancaPage() {
                 {/* Equipes e especialistas */}
                 <div className="md:col-start-1 md:row-start-2">
                   <article className="rounded-2xl border-2 border-border bg-card p-5 text-center">
-                    <h3 className="font-bold text-[#172b4d]">
+                    <h3 className="font-bold text-foreground">
                       Equipes e especialistas
                     </h3>
-                    <span className="mt-3 inline-flex rounded-full border border-orange-300 bg-orange-50 px-4 py-1 text-sm font-bold text-[#ea580c]">
+                    <span className="mt-3 inline-flex rounded-full border border-primary/30 bg-primary/10 px-4 py-1 text-sm font-bold text-primary">
                       avalia
                     </span>
                   </article>
@@ -90,8 +93,8 @@ export default function GovernancaPage() {
                 {/* NEES */}
                 <div className="md:col-start-3 md:row-start-2">
                   <article className="rounded-2xl border-2 border-border bg-card p-5 text-center">
-                    <h3 className="font-bold text-[#172b4d]">NEES</h3>
-                    <span className="mt-3 inline-flex rounded-full border border-orange-300 bg-orange-50 px-4 py-1 text-sm font-bold text-[#ea580c]">
+                    <h3 className="font-bold text-foreground">NEES</h3>
+                    <span className="mt-3 inline-flex rounded-full border border-primary/30 bg-primary/10 px-4 py-1 text-sm font-bold text-primary">
                       opera
                     </span>
                   </article>
@@ -100,10 +103,10 @@ export default function GovernancaPage() {
                 {/* Responsável pela solução */}
                 <div className="md:col-start-2 md:row-start-3">
                   <article className="rounded-2xl border-2 border-border bg-card p-5 text-center">
-                    <h3 className="font-bold text-[#172b4d]">
+                    <h3 className="font-bold text-foreground">
                       Responsável pela solução
                     </h3>
-                    <span className="mt-3 inline-flex rounded-full border border-orange-300 bg-orange-50 px-4 py-1 text-sm font-bold text-[#ea580c]">
+                    <span className="mt-3 inline-flex rounded-full border border-primary/30 bg-primary/10 px-4 py-1 text-sm font-bold text-primary">
                       corrige
                     </span>
                   </article>
@@ -112,39 +115,39 @@ export default function GovernancaPage() {
             </div>
 
             <div className="grid gap-5 md:grid-cols-2">
-              <article className="rounded-2xl border border-slate-200 bg-white p-6">
-                <h3 className="text-xl font-bold text-[#ea580c]">
+              <article className="rounded-2xl border border-border bg-white p-6">
+                <h3 className="text-xl font-bold text-primary">
                   Órgão demandante
                 </h3>
-                <p className="mt-3 leading-relaxed text-slate-600">
+                <p className="mt-3 leading-relaxed text-muted-foreground">
                   Define prioridades, indica áreas e participantes e delibera
                   sobre o uso, no âmbito de suas competências.
                 </p>
               </article>
 
-              <article className="rounded-2xl border border-slate-200 bg-white p-6">
-                <h3 className="text-xl font-bold text-[#ea580c]">NEES</h3>
-                <p className="mt-3 leading-relaxed text-slate-600">
+              <article className="rounded-2xl border border-border bg-white p-6">
+                <h3 className="text-xl font-bold text-primary">NEES</h3>
+                <p className="mt-3 leading-relaxed text-muted-foreground">
                   Estrutura o protocolo, opera os testes, documenta resultados e
                   recomenda condições de uso.
                 </p>
               </article>
 
-              <article className="rounded-2xl border border-slate-200 bg-white p-6">
-                <h3 className="text-xl font-bold text-[#ea580c]">
+              <article className="rounded-2xl border border-border bg-white p-6">
+                <h3 className="text-xl font-bold text-primary">
                   Equipes e especialistas
                 </h3>
-                <p className="mt-3 leading-relaxed text-slate-600">
+                <p className="mt-3 leading-relaxed text-muted-foreground">
                   Avaliam utilidade, segurança e implicações do domínio da
                   política.
                 </p>
               </article>
 
-              <article className="rounded-2xl border border-slate-200 bg-white p-6">
-                <h3 className="text-xl font-bold text-[#ea580c]">
+              <article className="rounded-2xl border border-border bg-white p-6">
+                <h3 className="text-xl font-bold text-primary">
                   Responsável pela solução
                 </h3>
-                <p className="mt-3 leading-relaxed text-slate-600">
+                <p className="mt-3 leading-relaxed text-muted-foreground">
                   Disponibiliza versão e documentação, responde a falhas e
                   implementa as correções acordadas.
                 </p>
@@ -153,18 +156,18 @@ export default function GovernancaPage() {
           </div>
         </section>
 
-        <section className="bg-[#fff7ed] px-6 py-16 md:py-20">
+        <section className="bg-card/40 px-6 py-16 md:py-20">
           <div className="mx-auto max-w-7xl">
             <div className="mb-10 max-w-3xl">
-              <p className="mb-3 text-sm font-semibold uppercase tracking-wider text-[#ea580c]">
+              <p className="mb-3 text-sm font-semibold uppercase tracking-wider text-primary">
                 Proteção e responsabilidade
               </p>
 
-              <h2 className="text-3xl font-bold text-[#172b4d] md:text-4xl">
+              <h2 className="text-3xl font-bold text-foreground md:text-4xl">
                 Salvaguardas em cada experimento
               </h2>
 
-              <p className="mt-4 leading-relaxed text-slate-600">
+              <p className="mt-4 leading-relaxed text-muted-foreground">
                 Cada experimento deve observar cuidados específicos para
                 proteger as pessoas envolvidas, os dados utilizados e a
                 integridade do processo.
@@ -172,39 +175,39 @@ export default function GovernancaPage() {
             </div>
 
             <div className="grid gap-5 sm:grid-cols-2 lg:grid-cols-4">
-              <article className="rounded-2xl border border-slate-200 bg-white p-6">
-                <h3 className="text-lg font-bold text-[#ea580c]">
+              <article className="rounded-2xl border border-border bg-white p-6">
+                <h3 className="text-lg font-bold text-primary">
                   Dados pessoais
                 </h3>
-                <p className="mt-3 leading-relaxed text-slate-600">
+                <p className="mt-3 leading-relaxed text-muted-foreground">
                   Base legal e acesso controlado.
                 </p>
               </article>
 
-              <article className="rounded-2xl border border-slate-200 bg-white p-6">
-                <h3 className="text-lg font-bold text-[#ea580c]">
+              <article className="rounded-2xl border border-border bg-white p-6">
+                <h3 className="text-lg font-bold text-primary">
                   Supervisão humana
                 </h3>
-                <p className="mt-3 leading-relaxed text-slate-600">
+                <p className="mt-3 leading-relaxed text-muted-foreground">
                   Revisão e resposta a incidentes.
                 </p>
               </article>
 
-              <article className="rounded-2xl border border-slate-200 bg-white p-6">
-                <h3 className="text-lg font-bold text-[#ea580c]">
+              <article className="rounded-2xl border border-border bg-white p-6">
+                <h3 className="text-lg font-bold text-primary">
                   Autorizações setoriais
                 </h3>
-                <p className="mt-3 leading-relaxed text-slate-600">
+                <p className="mt-3 leading-relaxed text-muted-foreground">
                   Enquadramento pela autoridade competente quando aplicável (por
                   exemplo, a Anvisa, em saúde).
                 </p>
               </article>
 
-              <article className="rounded-2xl border border-slate-200 bg-white p-6">
-                <h3 className="text-lg font-bold text-[#ea580c]">
+              <article className="rounded-2xl border border-border bg-white p-6">
+                <h3 className="text-lg font-bold text-primary">
                   Pesquisa com pessoas
                 </h3>
-                <p className="mt-3 leading-relaxed text-slate-600">
+                <p className="mt-3 leading-relaxed text-muted-foreground">
                   Análise ética aplicável.
                 </p>
               </article>
@@ -214,16 +217,16 @@ export default function GovernancaPage() {
 
         <section className="px-6 py-16 md:py-20">
           <div className="mx-auto max-w-7xl">
-            <div className="rounded-2xl border border-[#fed7aa] bg-[#fff7ed] p-8 md:p-10">
-              <p className="mb-3 text-sm font-semibold uppercase tracking-wider text-[#ea580c]">
+            <div className="rounded-2xl border border-border bg-card/40 p-8 md:p-10">
+              <p className="mb-3 text-sm font-semibold uppercase tracking-wider text-primary">
                 Independência na avaliação
               </p>
 
-              <h2 className="max-w-3xl text-2xl font-bold text-[#172b4d] md:text-3xl">
+              <h2 className="max-w-3xl text-2xl font-bold text-foreground md:text-3xl">
                 Quando o NEES desenvolve e avalia
               </h2>
 
-              <p className="mt-5 max-w-4xl text-base leading-relaxed text-slate-700">
+              <p className="mt-5 max-w-4xl text-base leading-relaxed text-muted-foreground">
                 Se a solução testada foi desenvolvida pelo próprio NEES, a
                 avaliação é feita por equipe separada, com revisão independente
                 e regras de conflito de interesses.
@@ -232,28 +235,28 @@ export default function GovernancaPage() {
           </div>
         </section>
 
-        <section className="bg-[#fff7ed] px-6 py-16 md:py-20">
+        <section className="bg-card/40 px-6 py-16 md:py-20">
           <div className="mx-auto max-w-7xl">
             <div className="mb-10 max-w-3xl">
-              <p className="mb-3 text-sm font-semibold uppercase tracking-wider text-[#ea580c]">
+              <p className="mb-3 text-sm font-semibold uppercase tracking-wider text-primary">
                 Critérios de execução
               </p>
 
-              <h2 className="text-3xl font-bold text-[#172b4d] md:text-4xl">
+              <h2 className="text-3xl font-bold text-foreground md:text-4xl">
                 Regras de cada experimento
               </h2>
 
-              <p className="mt-4 leading-relaxed text-slate-600">
+              <p className="mt-4 leading-relaxed text-muted-foreground">
                 Cada tipo de atividade possui condições próprias. A participação
                 no sandbox não substitui autorizações nem afasta as regras
                 aplicáveis.
               </p>
             </div>
 
-            <div className="overflow-x-auto rounded-2xl border border-slate-200 bg-white">
+            <div className="overflow-x-auto rounded-2xl border border-border bg-white">
               <table className="w-full min-w-212.5 border-collapse text-left">
                 <thead>
-                  <tr className="bg-[#ea580c] text-white">
+                  <tr className="bg-primary text-white">
                     <th className="px-5 py-4 text-sm font-semibold">
                       Enquadramento
                     </th>
@@ -266,9 +269,9 @@ export default function GovernancaPage() {
                   </tr>
                 </thead>
 
-                <tbody className="divide-y divide-slate-200 text-sm leading-relaxed text-slate-600">
+                <tbody className="divide-y divide-border text-sm leading-relaxed text-muted-foreground">
                   <tr className="bg-white">
-                    <td className="px-5 py-5 font-semibold text-[#172b4d]">
+                    <td className="px-5 py-5 font-semibold text-foreground">
                       Testagem algorítmica e operacional
                     </td>
                     <td className="px-5 py-5">
@@ -281,8 +284,8 @@ export default function GovernancaPage() {
                     </td>
                   </tr>
 
-                  <tr className="bg-[#fff7ed]">
-                    <td className="px-5 py-5 font-semibold text-[#172b4d]">
+                  <tr className="bg-card/40">
+                    <td className="px-5 py-5 font-semibold text-foreground">
                       Sandbox regulatório
                     </td>
                     <td className="px-5 py-5">
@@ -296,7 +299,7 @@ export default function GovernancaPage() {
                   </tr>
 
                   <tr className="bg-white">
-                    <td className="px-5 py-5 font-semibold text-[#172b4d]">
+                    <td className="px-5 py-5 font-semibold text-foreground">
                       Dados pessoais
                     </td>
                     <td className="px-5 py-5">
@@ -309,8 +312,8 @@ export default function GovernancaPage() {
                     </td>
                   </tr>
 
-                  <tr className="bg-[#fff7ed]">
-                    <td className="px-5 py-5 font-semibold text-[#172b4d]">
+                  <tr className="bg-card/40">
+                    <td className="px-5 py-5 font-semibold text-foreground">
                       Autorizações setoriais e pesquisa
                     </td>
                     <td className="px-5 py-5">
@@ -326,32 +329,43 @@ export default function GovernancaPage() {
               </table>
             </div>
 
-            <p className="mt-4 text-sm text-slate-500">
+            <p className="mt-4 text-sm text-muted-foreground">
               Em telas menores, deslize horizontalmente para consultar todas as
               colunas da tabela.
             </p>
           </div>
         </section>
 
-        <section className="border-t border-slate-200 px-6 py-10">
-          <div className="mx-auto flex max-w-7xl flex-col gap-4 sm:flex-row sm:items-center sm:justify-between">
+        {/* Navegação entre as páginas */}
+        <section className="border-t border-border bg-muted/40 px-6 py-12">
+          <div className="mx-auto flex max-w-7xl flex-col gap-6 sm:flex-row sm:items-center sm:justify-between">
             <Link
-              href="/entregas"
-              className="inline-flex items-center justify-center rounded-xl border border-slate-300 px-6 py-3 text-sm font-semibold text-[#172b4d] transition-colors hover:bg-slate-100"
+              href="/#mapa-sandbox"
+              className="text-sm font-semibold text-muted-foreground transition hover:text-primary"
             >
-              ← Entregas
+              ← Voltar ao mapa
             </Link>
 
-            <Link
-              href="/aplicacoes"
-              className="inline-flex items-center justify-center gap-2 rounded-lg bg-primary px-6 py-3 font-semibold text-white transition hover:bg-primary/90"
-            >
-              Próxima página: Aplicações →
-            </Link>
+            <div className="flex flex-col gap-3 sm:flex-row">
+              <Link
+                href="/entregas"
+                className="inline-flex items-center justify-center rounded-xl border border-border px-6 py-3 font-semibold text-foreground transition hover:bg-muted"
+              >
+                ← Entregas
+              </Link>
+
+              <Link
+                href="/aplicacoes"
+                className="inline-flex items-center justify-center gap-2 rounded-xl bg-primary px-6 py-3 font-semibold text-primary-foreground transition hover:brightness-95"
+              >
+                Aplicações
+                <span aria-hidden="true">→</span>
+              </Link>
+            </div>
           </div>
         </section>
       </main>
-      <div className="fixed inset-x-0 bottom-0 z-50 border-t border-orange-300 bg-[#ea580c] px-4 py-4 text-center text-sm font-bold text-white shadow-lg md:text-base">
+      <div className="fixed inset-x-0 bottom-0 z-50 border-t border-primary/30 bg-primary px-4 py-4 text-center text-sm font-bold text-white shadow-lg md:text-base">
         O contrato não flexibiliza normas
       </div>
       <Footer />

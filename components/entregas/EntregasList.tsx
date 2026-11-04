@@ -123,10 +123,10 @@ const fases = [
 ];
 
 const estiloFase: Record<number, string> = {
-  1: "border-[#176b73] bg-[#e8f3f3] text-[#176b73]",
-  2: "border-[#477b68] bg-[#eaf3ed] text-[#477b68]",
-  3: "border-[#637c91] bg-[#eef2f6] text-[#637c91]",
-  4: "border-[#b66a24] bg-[#fff1df] text-[#b66a24]",
+  1: "border-primary/30 bg-primary/10 text-primary",
+  2: "border-primary/30 bg-primary/10 text-primary",
+  3: "border-primary/30 bg-primary/10 text-primary",
+  4: "border-primary/30 bg-primary/10 text-primary",
 };
 
 export default function EntregasList() {
@@ -156,27 +156,30 @@ export default function EntregasList() {
           </div>
 
           <div
-            className="rounded-2xl border border-border bg-muted/30 p-6"
+            className="rounded-2xl border border-border bg-muted/40 p-6"
             aria-label="Ilustração de um dossiê com oito entregas"
           >
             <div className="mx-auto max-w-sm">
-              <div className="mb-2 ml-5 h-3 w-28 rounded-t-lg bg-[#176b73]" />
-              <div className="rounded-xl border-2 border-[#176b73] bg-white p-4 shadow-sm">
+              <div className="mb-2 ml-5 h-3 w-28 rounded-t-lg bg-primary" />
+
+              <div className="rounded-xl border-2 border-border bg-card p-4 shadow-sm">
                 <div className="mb-4 flex items-center justify-between">
-                  <span className="font-bold text-[#176b73]">
+                  <span className="font-bold text-foreground">
                     Dossiê do teste
                   </span>
                   <span className="text-xs text-muted-foreground">8 itens</span>
                 </div>
+
                 <div className="grid grid-cols-2 gap-2">
                   {entregas.map((entrega) => (
                     <div
                       key={entrega.id}
-                      className="flex items-center gap-2 rounded-lg border border-[#d6e5e5] bg-[#f5f9f9] p-2 text-sm"
+                      className="flex items-center gap-2 rounded-lg border border-border bg-muted/40 p-2 text-sm"
                     >
-                      <span className="flex h-6 w-6 shrink-0 items-center justify-center rounded bg-[#e8f3f3] text-xs font-bold text-[#176b73]">
+                      <span className="flex h-6 w-6 shrink-0 items-center justify-center rounded bg-primary/10 text-xs font-bold text-primary">
                         {entrega.id}
                       </span>
+
                       <span className="text-xs font-medium text-foreground">
                         {entrega.nome}
                       </span>
@@ -184,6 +187,7 @@ export default function EntregasList() {
                   ))}
                 </div>
               </div>
+
               <p className="mt-3 text-center text-xs text-muted-foreground">
                 Instrumentos, resultados e orientações para novos ciclos
               </p>
@@ -212,7 +216,7 @@ export default function EntregasList() {
               aria-pressed={faseAtiva === null}
               className={`rounded-full border px-4 py-2 text-sm font-semibold transition-colors ${
                 faseAtiva === null
-                  ? "border-primary bg-primary text-white"
+                  ? "border-primary bg-primary text-primary-foreground"
                   : "border-border bg-background text-foreground hover:bg-muted"
               }`}
             >
@@ -230,8 +234,8 @@ export default function EntregasList() {
                 aria-pressed={faseAtiva === fase.id}
                 className={`rounded-full border px-4 py-2 text-sm font-semibold transition-colors ${
                   faseAtiva === fase.id
-                    ? "border-[#176b73] bg-[#176b73] text-white"
-                    : "border-[#176b73]/30 bg-[#e8f3f3] text-[#176b73] hover:bg-[#dcecec]"
+                    ? "border-primary bg-primary text-primary-foreground"
+                    : "border-border bg-background text-foreground hover:bg-muted"
                 }`}
               >
                 Fase {fase.id} · {fase.nome}
@@ -265,7 +269,7 @@ export default function EntregasList() {
 
                   return (
                     <Fragment key={entrega.id}>
-                      <tr className="border-t border-border align-top transition-colors hover:bg-muted/30">
+                      <tr className="border-t border-border align-top transition-colors hover:bg-muted/40">
                         <td className="px-5 py-4 text-sm font-semibold text-foreground">
                           {entrega.id}. {entrega.nome}
                         </td>
@@ -297,7 +301,7 @@ export default function EntregasList() {
                       </tr>
 
                       {aberta && (
-                        <tr className="border-t border-border bg-muted/30">
+                        <tr className="border-t border-border bg-muted/40">
                           <td colSpan={4} className="px-5 py-5">
                             <div className="max-w-3xl">
                               <p className="mb-3 text-sm font-bold text-foreground">

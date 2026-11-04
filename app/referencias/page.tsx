@@ -305,7 +305,7 @@ export default function ReferenciasPage() {
                 href="/sobre"
                 className="inline-flex items-center justify-center gap-2 rounded-xl bg-primary px-6 py-3 font-semibold text-primary-foreground transition hover:brightness-95"
               >
-                Sobre o NEES e contato
+                Sobre o NEES
                 <span aria-hidden="true">→</span>
               </Link>
             </div>

@@ -16,7 +16,7 @@ export default function SobrePage() {
               className="inline-flex items-center gap-2 text-sm font-medium text-white/80 transition hover:text-white"
             >
               <span aria-hidden="true">←</span>
-              Voltar ao mapa
+              Voltar á página inicial
             </Link>
 
             <div className="mt-10 max-w-4xl">
@@ -195,7 +195,10 @@ export default function SobrePage() {
                   </span>
                 </summary>
                 <p className="mt-4 leading-relaxed text-muted-foreground">
-                  Sim.
+                  Sim. Nos casos em que o NEES desenvolve a plataforma utiliza
+                  no sandbox, garantimos o seu monitoramento e avaliação
+                  contínua, sem necessidade de engajamento de terceiros no
+                  projeto.
                 </p>
               </details>
 
@@ -276,7 +279,7 @@ export default function SobrePage() {
             </div>
 
             <form
-              action="https://formsubmit.co/beatriz.costa@nees.ufal.br"
+              action="https://formsubmit.co/ingrid.soares@nees.ufal.br"
               method="POST"
               className="rounded-2xl border border-border bg-card p-6 shadow-sm md:p-8"
             >

@@ -181,6 +181,7 @@ export default function PlanoDoCicloPage() {
           </div>
         </section>
       </main>
+
       {/* Navegação entre as páginas */}
       <section className="border-t border-border bg-muted/40 px-6 py-12">
         <div className="mx-auto flex max-w-7xl flex-col gap-6 sm:flex-row sm:items-center sm:justify-between">
@@ -191,13 +192,22 @@ export default function PlanoDoCicloPage() {
             ← Voltar ao mapa
           </Link>
 
-          <Link
-            href="/entregas"
-            className="inline-flex items-center justify-center gap-2 rounded-xl bg-primary px-6 py-3 font-semibold text-primary-foreground transition hover:brightness-95 focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-primary"
-          >
-            Próxima etapa: Entregas
-            <span aria-hidden="true">→</span>
-          </Link>
+          <div className="flex flex-col gap-3 sm:flex-row">
+            <Link
+              href="/cronograma"
+              className="inline-flex items-center justify-center rounded-xl border border-border px-6 py-3 font-semibold text-foreground transition hover:bg-muted"
+            >
+              ← Cronograma
+            </Link>
+
+            <Link
+              href="/entregas"
+              className="inline-flex items-center justify-center gap-2 rounded-xl bg-primary px-6 py-3 font-semibold text-primary-foreground transition hover:brightness-95"
+            >
+              Entregas
+              <span aria-hidden="true">→</span>
+            </Link>
+          </div>
         </div>
       </section>
       <Footer />

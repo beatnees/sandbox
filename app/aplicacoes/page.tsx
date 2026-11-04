@@ -7,41 +7,44 @@ export default function AplicacoesPage() {
     <>
       <Header />
 
-      <main>
+      <main className="bg-background">
         <section className="bg-gradient-hero px-6 py-16 text-white md:py-24">
           <div className="mx-auto max-w-7xl">
             <Link
               href="/"
-              className="mb-8 inline-flex text-sm text-white/80 transition-colors hover:text-white"
+              className="inline-flex items-center gap-2 text-sm font-medium text-white/80 transition hover:text-white"
             >
-              ← Voltar ao mapa do sandbox
+              <span aria-hidden="true">←</span>
+              Voltar à página inicial
             </Link>
 
-            <p className="mb-4 text-sm font-semibold uppercase tracking-wider text-white/70">
-              Aplicações
-            </p>
+            <div className="mt-10 max-w-4xl">
+              <p className="text-sm font-semibold uppercase tracking-widest text-white/70">
+                Aplicações
+              </p>
 
-            <h1 className="max-w-4xl text-4xl font-bold leading-tight md:text-5xl">
-              Duas formas de usar o sandbox
-            </h1>
+              <h1 className="mt-5 text-4xl font-bold leading-tight tracking-tight sm:text-5xl md:text-6xl">
+                Duas formas de usar o sandbox
+              </h1>
 
-            <p className="mt-6 max-w-3xl text-lg leading-relaxed text-white/85">
-              O método pode avaliar soluções existentes ou acompanhar soluções
-              desenvolvidas pelo NEES. As duas formas podem ser combinadas.
-              Comece por uma solução e por uma pergunta de decisão.
-            </p>
+              <p className="mt-6 max-w-3xl text-lg leading-relaxed text-white/85">
+                O método pode avaliar soluções existentes ou acompanhar soluções
+                desenvolvidas pelo NEES. As duas formas podem ser combinadas.
+                Comece por uma solução e por uma pergunta de decisão.
+              </p>
+            </div>
           </div>
         </section>
 
         <section className="px-6 py-16 md:py-20">
           <div className="mx-auto max-w-7xl">
             <div className="grid gap-6 lg:grid-cols-2">
-              <article className="rounded-2xl border border-[#fed7aa] bg-[#fff7ed] p-8 md:p-10">
-                <span className="mb-5 inline-flex h-10 w-10 items-center justify-center rounded-full bg-[#ea580c] text-lg font-bold text-white">
+              <article className="rounded-2xl border border-border bg-muted/40 p-8 md:p-10">
+                <span className="mb-5 inline-flex h-10 w-10 items-center justify-center rounded-full bg-primary text-lg font-bold text-white">
                   A
                 </span>
 
-                <h2 className="text-2xl font-bold text-[#172b4d] md:text-3xl">
+                <h2 className="text-2xl font-bold text-foreground md:text-3xl">
                   Sandbox como produto
                 </h2>
 
@@ -51,22 +54,22 @@ export default function AplicacoesPage() {
                   elegível. Não é preciso contratar desenvolvimento do NEES.
                 </p>
 
-                <div className="mt-8 rounded-xl bg-white/80 p-5">
-                  <p className="text-sm font-semibold uppercase tracking-wider text-[#ea580c]">
+                <div className="mt-8 rounded-xl bg-card/80 p-5">
+                  <p className="text-sm font-semibold uppercase tracking-wider text-primary">
                     Fluxo
                   </p>
-                  <p className="mt-2 font-semibold text-[#172b4d]">
+                  <p className="mt-2 font-semibold text-foreground">
                     Solução existente → Sandbox → Decisão
                   </p>
                 </div>
               </article>
 
-              <article className="rounded-2xl border border-[#fed7aa] bg-[#fff7ed] p-8 md:p-10">
-                <span className="mb-5 inline-flex h-10 w-10 items-center justify-center rounded-full bg-[#ea580c] text-lg font-bold text-white">
+              <article className="rounded-2xl border border-border bg-muted/40 p-8 md:p-10">
+                <span className="mb-5 inline-flex h-10 w-10 items-center justify-center rounded-full bg-primary text-lg font-bold text-white">
                   B
                 </span>
 
-                <h2 className="text-2xl font-bold text-[#172b4d] md:text-3xl">
+                <h2 className="text-2xl font-bold text-foreground md:text-3xl">
                   Sandbox integrado
                 </h2>
 
@@ -77,11 +80,11 @@ export default function AplicacoesPage() {
                   desenvolvimento para correção e novo teste.
                 </p>
 
-                <div className="mt-8 rounded-xl bg-white/80 p-5">
-                  <p className="text-sm font-semibold uppercase tracking-wider text-[#ea580c]">
+                <div className="mt-8 rounded-xl bg-card/80 p-5">
+                  <p className="text-sm font-semibold uppercase tracking-wider text-primary">
                     Fluxo
                   </p>
-                  <p className="mt-2 font-semibold text-[#172b4d]">
+                  <p className="mt-2 font-semibold text-foreground">
                     NEES desenvolve → Sandbox avalia → Órgão decide
                   </p>
                   <p className="mt-3 text-sm text-slate-600">
@@ -99,14 +102,14 @@ export default function AplicacoesPage() {
           </div>
         </section>
 
-        <section className="bg-[#f5f8fc] px-6 py-16 md:py-20">
+        <section className="bg-background px-6 py-16 md:py-20">
           <div className="mx-auto max-w-7xl">
             <div className="mb-10 max-w-3xl">
-              <p className="mb-3 text-sm font-semibold uppercase tracking-wider text-[#ea580c]">
+              <p className="mb-3 text-sm font-semibold uppercase tracking-wider text-primary">
                 Áreas de aplicação
               </p>
 
-              <h2 className="text-3xl font-bold text-[#172b4d] md:text-4xl">
+              <h2 className="text-3xl font-bold text-foreground md:text-4xl">
                 Onde o método se aplica
               </h2>
 
@@ -117,11 +120,11 @@ export default function AplicacoesPage() {
               </p>
             </div>
 
-            <article className="mb-8 rounded-2xl border border-[#fed7aa] bg-white p-7 md:p-9">
+            <article className="mb-8 rounded-2xl border border-border bg-card p-7 md:p-9">
               <div className="flex flex-wrap items-center justify-between gap-3">
-                <h3 className="text-2xl font-bold text-[#172b4d]">Educação</h3>
+                <h3 className="text-2xl font-bold text-foreground">Educação</h3>
 
-                <span className="rounded-full bg-[#fff7ed] px-4 py-2 text-xs font-semibold text-[#ea580c]">
+                <span className="rounded-full bg-muted/40 px-4 py-2 text-xs font-semibold text-primary">
                   Experiência realizada
                 </span>
               </div>
@@ -132,7 +135,7 @@ export default function AplicacoesPage() {
 
               <Link
                 href="/experiencia-mec"
-                className="mt-5 inline-flex items-center gap-2 font-semibold text-[#ea580c] transition-colors hover:text-[#c2410c]"
+                className="mt-5 inline-flex items-center gap-2 font-semibold text-primary transition-colors hover:text-primary/80"
               >
                 Conheça a experiência do MEC →
               </Link>
@@ -140,11 +143,11 @@ export default function AplicacoesPage() {
 
             <div className="mb-8">
               <div className="flex flex-wrap items-center gap-3">
-                <h3 className="text-2xl font-bold text-[#172b4d]">
+                <h3 className="text-2xl font-bold text-foreground">
                   Saúde: exemplos de aplicação
                 </h3>
 
-                <span className="rounded-full bg-[#fff7ed] px-4 py-2 text-xs font-semibold text-[#ea580c]">
+                <span className="rounded-full bg-muted/40 px-4 py-2 text-xs font-semibold text-primary">
                   Exemplos de aplicação
                 </span>
               </div>
@@ -157,8 +160,8 @@ export default function AplicacoesPage() {
             </div>
 
             <div className="grid gap-5 sm:grid-cols-2">
-              <article className="rounded-2xl border border-slate-200 bg-white p-6">
-                <h4 className="text-lg font-bold text-[#ea580c]">
+              <article className="rounded-2xl border border-border bg-card p-6">
+                <h4 className="text-lg font-bold text-primary">
                   Vigilância de dengue
                 </h4>
                 <p className="mt-3 leading-relaxed text-slate-600">
@@ -169,8 +172,8 @@ export default function AplicacoesPage() {
                 </p>
               </article>
 
-              <article className="rounded-2xl border border-slate-200 bg-white p-6">
-                <h4 className="text-lg font-bold text-[#ea580c]">
+              <article className="rounded-2xl border border-border bg-card p-6">
+                <h4 className="text-lg font-bold text-primary">
                   Diabetes na atenção primária
                 </h4>
                 <p className="mt-3 leading-relaxed text-slate-600">
@@ -180,10 +183,8 @@ export default function AplicacoesPage() {
                 </p>
               </article>
 
-              <article className="rounded-2xl border border-slate-200 bg-white p-6">
-                <h4 className="text-lg font-bold text-[#ea580c]">
-                  Saúde mental
-                </h4>
+              <article className="rounded-2xl border border-border bg-card p-6">
+                <h4 className="text-lg font-bold text-primary">Saúde mental</h4>
                 <p className="mt-3 leading-relaxed text-slate-600">
                   Quais sinais justificam revisão pela equipe e como agir sem
                   expor ou estigmatizar usuários? O teste verifica se a ausência
@@ -191,8 +192,8 @@ export default function AplicacoesPage() {
                 </p>
               </article>
 
-              <article className="rounded-2xl border border-slate-200 bg-white p-6">
-                <h4 className="text-lg font-bold text-[#ea580c]">
+              <article className="rounded-2xl border border-border bg-card p-6">
+                <h4 className="text-lg font-bold text-primary">
                   Violência contra mulheres
                 </h4>
                 <p className="mt-3 leading-relaxed text-slate-600">
@@ -207,12 +208,12 @@ export default function AplicacoesPage() {
 
         <section className="px-6 py-12 md:py-16">
           <div className="mx-auto max-w-7xl">
-            <div className="rounded-2xl border-l-4 border-[#fed7aa] bg-[#fff7ed] p-7 md:p-9">
-              <p className="mb-3 text-sm font-bold uppercase tracking-wider text-[#ea580c]">
+            <div className="rounded-2xl border-l-4 border-border bg-muted/40 p-7 md:p-9">
+              <p className="mb-3 text-sm font-bold uppercase tracking-wider text-primary">
                 Importante
               </p>
 
-              <h2 className="text-xl font-bold text-[#172b4d] md:text-2xl">
+              <h2 className="text-xl font-bold text-foreground md:text-2xl">
                 Testar tecnicamente não é comprovar impacto na saúde
               </h2>
 
@@ -225,21 +226,32 @@ export default function AplicacoesPage() {
           </div>
         </section>
 
-        <section className="border-t border-slate-200 px-6 py-10">
-          <div className="mx-auto flex max-w-7xl flex-col gap-4 sm:flex-row sm:items-center sm:justify-between">
+        {/* Navegação entre as páginas */}
+        <section className="border-t border-border bg-muted/40 px-6 py-12">
+          <div className="mx-auto flex max-w-7xl flex-col gap-6 sm:flex-row sm:items-center sm:justify-between">
             <Link
-              href="/governanca"
-              className="inline-flex items-center justify-center rounded-xl border border-slate-300 px-6 py-3 text-sm font-semibold text-[#172b4d] transition-colors hover:bg-slate-100"
+              href="/#mapa-sandbox"
+              className="text-sm font-semibold text-muted-foreground transition hover:text-primary"
             >
-              ← Governança e salvaguardas
+              ← Voltar ao mapa
             </Link>
 
-            <Link
-              href="/referencias"
-              className="inline-flex items-center justify-center gap-2 rounded-lg bg-primary px-6 py-3 font-semibold text-white transition hover:bg-primary/90"
-            >
-              Próxima página: Referências →
-            </Link>
+            <div className="flex flex-col gap-3 sm:flex-row">
+              <Link
+                href="/governanca"
+                className="inline-flex items-center justify-center rounded-xl border border-border px-6 py-3 font-semibold text-foreground transition hover:bg-muted"
+              >
+                ← Governança
+              </Link>
+
+              <Link
+                href="/referencias"
+                className="inline-flex items-center justify-center gap-2 rounded-xl bg-primary px-6 py-3 font-semibold text-primary-foreground transition hover:brightness-95"
+              >
+                Referências
+                <span aria-hidden="true">→</span>
+              </Link>
+            </div>
           </div>
         </section>
       </main>

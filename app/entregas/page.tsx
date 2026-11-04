@@ -7,7 +7,6 @@ export default function EntregasPage() {
   return (
     <>
       <Header />
-
       <main>
         <section className="bg-gradient-hero px-6 py-16 text-white md:py-24">
           <div className="mx-auto max-w-7xl">
@@ -15,7 +14,7 @@ export default function EntregasPage() {
               href="/"
               className="mb-8 inline-flex text-sm text-white/80 transition-colors hover:text-white"
             >
-              ← Voltar ao mapa do sandbox
+              ← Voltar à página inicial
             </Link>
 
             <p className="mb-4 text-sm font-semibold uppercase tracking-wider text-white/70">
@@ -62,7 +61,7 @@ export default function EntregasPage() {
           </div>
         </section>
 
-        <section className="bg-muted/30 px-6 py-16 md:py-20">
+        <section className="bg-muted/40 px-6 py-16 md:py-20">
           <div className="mx-auto max-w-7xl">
             <div className="w-full">
               <EntregasList />
@@ -72,7 +71,7 @@ export default function EntregasPage() {
 
         <section className="px-6 py-16">
           <div className="mx-auto max-w-7xl">
-            <div className="rounded-2xl border border-primary/20 bg-primary/5 p-6 md:p-8">
+            <div className="rounded-2xl border border-border bg-card p-6 shadow-sm md:p-8">
               <p className="text-sm font-semibold uppercase tracking-wider text-primary">
                 Importante
               </p>
@@ -107,13 +106,22 @@ export default function EntregasPage() {
             ← Voltar ao mapa
           </Link>
 
-          <Link
-            href="/governanca"
-            className="inline-flex items-center justify-center gap-2 rounded-xl bg-primary px-6 py-3 font-semibold text-primary-foreground transition hover:brightness-95 focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-primary"
-          >
-            Próxima etapa: Governança e Salvaguardas
-            <span aria-hidden="true">→</span>
-          </Link>
+          <div className="flex flex-col gap-3 sm:flex-row">
+            <Link
+              href="/plano-do-ciclo"
+              className="inline-flex items-center justify-center rounded-xl border border-border px-6 py-3 font-semibold text-foreground transition hover:bg-muted"
+            >
+              ← Plano do ciclo
+            </Link>
+
+            <Link
+              href="/governanca"
+              className="inline-flex items-center justify-center gap-2 rounded-xl bg-primary px-6 py-3 font-semibold text-primary-foreground transition hover:brightness-95"
+            >
+              Governança
+              <span aria-hidden="true">→</span>
+            </Link>
+          </div>
         </div>
       </section>
 
